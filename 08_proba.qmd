@@ -41,96 +41,82 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
 
+## Wprowadzenie
 
-## Wprowadzenie  
-- Populacja i próba 
-- Próba losowa i nielosowa
-- Reprezentatywność próby
+-   Populacja i próba
+-   Próba losowa i nielosowa
+-   Reprezentatywność próby
 
+## Podstawowe pojęcia
 
+-   **Jednostka badawcza** – pojedynczy element populacji\
+-   **Populacja** – zbiór wszystkich elementów badania\
+-   **Próba losowa** – wybrana grupa reprezentatywna\
+-   **Błąd doboru próby** – różnice między próbką a populacją
 
-## Podstawowe pojęcia  
-- **Jednostka badawcza** – pojedynczy element populacji  
-- **Populacja** – zbiór wszystkich elementów badania  
-- **Próba losowa** – wybrana grupa reprezentatywna  
-- **Błąd doboru próby** – różnice między próbką a populacją  
+## Podział metod doboru próby
 
+-   **Dobór losowy** a **dobór nielosowy**\
+-   Kiedy stosować którą metodę?
 
+## **Metody doboru losowego**
 
-## Podział metod doboru próby  
-- **Dobór losowy** a **dobór nielosowy**  
-- Kiedy stosować którą metodę?  
+## Próba prosta
 
+-   Każda jednostka ma równą szansę na wybór\
+-   **Przykład:** losowanie numerów PESEL
 
+## Losowanie warstwowe
 
-## **Metody doboru losowego**  
-
-## Próba prosta  
-- Każda jednostka ma równą szansę na wybór  
-- **Przykład:** losowanie numerów PESEL  
-
-
-
-## Losowanie warstwowe  
-- Populacja dzielona na **homogeniczne podgrupy**  
-- **Przykład:** wybór $k$ uczniów z każdej klasy  
-
-
+-   Populacja dzielona na **homogeniczne podgrupy**\
+-   **Przykład:** wybór $k$ uczniów z każdej klasy
 
 ## Losowanie systematyczne
-- Wybieranie co **k-tej** jednostki z listy  
-- **Przykład:** Wybór z listy osoby: 5, 15, 25, ...  
-- **Przykład:** badanie klientów sklepu – co 20. osoba  
 
+-   Wybieranie co **k-tej** jednostki z listy\
+-   **Przykład:** Wybór z listy osoby: 5, 15, 25, ...\
+-   **Przykład:** badanie klientów sklepu – co 20. osoba
 
+## Losowanie zespołowe (klastrowe)
 
-## Losowanie zespołowe (klastrowe)  
-- Wybór całych grup zamiast pojedynczych jednostek  
-- **Przykład:** losowanie gospodarstw domowych, zamiast osób 
-- **Przykład:** losowanie szkół, zamiast pojedynczych uczniów  
+-   Wybór całych grup zamiast pojedynczych jednostek\
+-   **Przykład:** losowanie gospodarstw domowych, zamiast osób
+-   **Przykład:** losowanie szkół, zamiast pojedynczych uczniów
 
+## Losowanie wielostopniowe (np. dwustopniowe)
 
+-   Połączenie kilku metod losowych\
+-   **Przykład:** wylosowanie gospodarstwa domowego → losowanie osoby
+-   **Przykład:** wybór miast → szkół → uczniów
 
-## Losowanie wielostopniowe  (np. dwustopniowe)
-- Połączenie kilku metod losowych  
-- **Przykład:** wylosowanie gospodarstwa domowego → losowanie osoby 
-- **Przykład:** wybór miast → szkół → uczniów  
+## **Metody doboru nielosowego**
 
+## Próba kwotowa
 
+-   Wybór jednostek na podstawie określonych cech (grupa wiekowa, miejsce zamieszka)
+-   **Przykład:** badanie opinii publicznej
 
-## **Metody doboru nielosowego**  
+## Dobór celowy
 
-## Próba kwotowa  
-- Wybór jednostek na podstawie określonych cech  (grupa wiekowa, miejsce zamieszka)
-- **Przykład:** badanie opinii publicznej  
+-   Wybór najbardziej typowych lub eksperckich jednostek\
+-   **Przykład:** analiza liderów opinii
 
+## Dobór przypadkowy (konwieniencji)
 
+-   Wybór jednostek najłatwiej dostępnych\
+-   **Przykład:** ankieta wśród znajomych
 
-## Dobór celowy  
-- Wybór najbardziej typowych lub eksperckich jednostek  
-- **Przykład:** analiza liderów opinii  
+## Dobór śnieżnej kuli
 
+-   Rekrutacja kolejnych uczestników przez osoby już badane\
+-   **Przykład:** badanie rzadkich grup społecznych
 
+## Wybór metody
 
-## Dobór przypadkowy (konwieniencji)  
-- Wybór jednostek najłatwiej dostępnych  
-- **Przykład:** ankieta wśród znajomych  
-
-
-
-## Dobór śnieżnej kuli  
-- Rekrutacja kolejnych uczestników przez osoby już badane  
-- **Przykład:** badanie rzadkich grup społecznych  
-
-
-
-## Wybór metody  
-- Zależność od celu badania  
-- Budżet i czas  
-- Ryzyko błędu i **reprezentatywność**  
-
-
-
-
+-   Zależność od celu badania\
+-   Budżet i czas\
+-   Ryzyko błędu i **reprezentatywność**

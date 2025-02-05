@@ -41,6 +41,8 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
 
 ```{r}
@@ -48,42 +50,30 @@ library(ggplot2)
 library(readxl)
 ```
 
-
 ## 1. Wprowadzenie do R
 
 R to język programowania i środowisko do analizy statystycznej i wizualizacji danych.
 
 Główne cechy:
 
-- Darmowy i otwartoźródłowy
-- Bogata biblioteka pakietów
-- Wsparcie społeczności
+-   Darmowy i otwartoźródłowy
+-   Bogata biblioteka pakietów
+-   Wsparcie społeczności
 
 ## 2. Instalacja R i RStudio
 
+![](pic/R.png){.absolute top="0" right="0" width="200" height="200"}
 
-
-![](pic/R.png){.absolute top=0 right=0 width=200 height=200}
-
-
-1. Pobierz R z [CRAN](https://cran.r-project.org/)
-2. Zainstaluj RStudio ze strony [posit.co](https://posit.co/download/rstudio-desktop/)
-
-
+1.  Pobierz R z [CRAN](https://cran.r-project.org/)
+2.  Zainstaluj RStudio ze strony [posit.co](https://posit.co/download/rstudio-desktop/)
 
 ## 3. Interfejs RStudio
 
-RStudio składa się z czterech głównych paneli:
-- Edytor kodu
-- Konsola
-- Środowisko/Historia
-- Pliki/Wykresy/Pakiety/Pomoc
-
+RStudio składa się z czterech głównych paneli: - Edytor kodu - Konsola - Środowisko/Historia - Pliki/Wykresy/Pakiety/Pomoc
 
 ## RStudio
 
 ![](pic/RStudio.png)
-
 
 ## 4. Podstawowe operacje arytmetyczne {.smaller}
 
@@ -96,8 +86,6 @@ RStudio składa się z czterech głównych paneli:
 
 ```
 
-
-
 ## 5. Zmienne i przypisanie {.smaller}
 
 ```{r}
@@ -107,16 +95,12 @@ z <- x + y
 print(z)
 ```
 
-
-
-
 ## 6. Typy danych
 
-- Numeryczne
-- Znakowe
-- Logiczne
-- Czynnikowe
-
+-   Numeryczne
+-   Znakowe
+-   Logiczne
+-   Czynnikowe
 
 ```{r}
 num <- 10.5
@@ -125,18 +109,13 @@ logic <- TRUE
 factor <- factor(c("A", "B", "C"))
 ```
 
-
-
 ## 7. Wektory
-
 
 ```{r}
 vec <- c(1, 2, 3, 4, 5)
 print(vec)
 print(vec) # Indeksowanie
 ```
-
-
 
 ## 8. Funkcje
 
@@ -149,9 +128,6 @@ wynik <- kwadrat(4)
 print(wynik)
 ```
 
-
-
-
 ## 9. Pakiety
 
 Instalacja pakietu:
@@ -161,18 +137,13 @@ Instalacja pakietu:
 install.packages("ggplot2")
 ```
 
-
-
 Ładowanie pakietu:
 
 ```{r}
 library(ggplot2)
 ```
 
-
-
 ## 10. Ramki danych
-
 
 ```{r}
 df <- data.frame(
@@ -183,10 +154,7 @@ height = c(165, 180, 175)
 print(df)
 ```
 
-
-
 ## 11. Wczytywanie danych
-
 
 ```{r}
 #| eval: false
@@ -199,16 +167,11 @@ library(readxl)
 data <- read_excel("data.xlsx")
 ```
 
-
-
 ## 12. Podstawowa analiza danych
 
 ```{r}
 summary(df)
 ```
-
-
-
 
 ## 13. Wizualizacja danych
 
@@ -217,9 +180,6 @@ ggplot(df, aes(x = name, y = age)) +
 geom_bar(stat = "identity") +
 theme_minimal()
 ```
-
-
-
 
 ## 14. Kontrola przepływu
 
@@ -235,16 +195,9 @@ print("x jest mniejsze lub równe 5")
 }
 ```
 
-
-
-
 ## 15. Podsumowanie
 
-- R to potężne narzędzie do analizy danych
-- Bogata biblioteka pakietów rozszerza możliwości
-- Społeczność R oferuje wsparcie i zasoby edukacyjne
-- Praktyka jest kluczem do opanowania R
-
-
-
-
+-   R to potężne narzędzie do analizy danych
+-   Bogata biblioteka pakietów rozszerza możliwości
+-   Społeczność R oferuje wsparcie i zasoby edukacyjne
+-   Praktyka jest kluczem do opanowania R

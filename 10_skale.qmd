@@ -41,6 +41,8 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
 
 ## Wprowadzenie {background-gradient="linear-gradient(to bottom , #17b2c3, #082b65)"}
@@ -93,7 +95,7 @@ Skale pomiarowe są kluczowym elementem w statystyce, określającym sposób pom
 ##  {.scrollable background-color="blue" style="font-size: 50%;"}
 
 | Operacja / Skala | Nominalna | Porządkowa | Przedziałowa | Ilorazowa |
-|----------------|:------------:|:------------:|:------------:|:------------:|
+|---------------|:-------------:|:-------------:|:-------------:|:-------------:|
 | Zliczanie | ✓ | ✓ | ✓ | ✓ |
 | Obliczanie frakcji | ✓ | ✓ | ✓ | ✓ |
 | Wyznaczanie dominanty | ✓ | ✓ | ✓ | ✓ |
@@ -109,8 +111,6 @@ Skale pomiarowe są kluczowym elementem w statystyce, określającym sposób pom
 | Mnożenie i dzielenie dwóch wielkości |  |  |  | ✓ |
 | Logarytmowanie, potęgowanie |  |  |  | ✓ |
 | Średnia kwadratowa, harmoniczna, geometryczna |  |  |  | ✓ |
-
-
 
 ## Znaczenie skal pomiarowych
 
@@ -138,7 +138,7 @@ Skala pomiarowa jest jednym z kluczowych czynników przy wyborze odpowiedniego t
 ##  {.scrollable background-color="blue" style="font-size: 40%;"}
 
 | Zagadnienie | Przedziałowa / ilorazowa | Porządkowa | Nominalna | Nominalna binarna |
-|--------------|------------------|--------------|--------------|--------------|
+|---------------|---------------|---------------|---------------|---------------|
 | Jedna populacja | Test t dla średniej<br>Test F dla wariancji |  | Test dla wskaźnika struktury<br>Test chi-kwadrat zgodności | Test dla wskaźnika struktury |
 | Dwie populacje niezależne | Test t równości średnich<br>Test F równości wariancji | Test U Manna-Whitney'a<br>Test serii Walda-Wolfowitza<br>Test dla współczynnika korelacji rang Spearmana | Test równości proporcji<br>Test chi-kwadrat niezależności<br>Test chi-kwadrat jednorodności | Test chi-kwadrat niezależności<br>Test dokładny Fishera |
 | Dwie populacje zależne | Test t par skojarzonych<br>Test dla współczynnika korelacji Pearsona | Test rangowanych znaków Wilcoxona | Test chi-kwadrat niezależności<br>Test chi-kwadrat jednorodności | Test McNemara |

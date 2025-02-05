@@ -60,5 +60,3 @@ link-citations: true
 ## Literatura zaawansowana
 
 ## Literatura popularnonaukowa
-
-

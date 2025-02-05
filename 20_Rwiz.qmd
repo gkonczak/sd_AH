@@ -41,9 +41,9 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
-
-
 
 ## Typy danych i funkcja *plot* {.scrollable}
 
@@ -51,8 +51,6 @@ link-citations: true
 class(rivers)
 plot(rivers)
 ```
-
-
 
 ```{r}
 class(cars)
@@ -146,13 +144,10 @@ legend("topleft", legend = names(avg_price), fill = viridis::viridis(length(avg_
 
 ## Palety kolorystyczne {.smaller}
 
-::: panel-tabset
-
+:::: panel-tabset
 ### grDevices
 
-
 ::: panel-tabset
-
 ### heat.colors
 
 ```{r}
@@ -165,7 +160,6 @@ heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow 
 
 ```
 
-
 ### topo.colors
 
 ```{r}
@@ -177,7 +171,6 @@ heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow 
 
 
 ```
-
 
 ### cm.colors
 
@@ -205,7 +198,6 @@ heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow 
 
 ### rainbow
 
-
 ```{r}
 paleta<- rainbow(20) 	
 x <- seq(0, 8*pi, length.out=100)
@@ -215,16 +207,11 @@ heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow 
 
 
 ```
-
-
 :::
 
 ### RColorBrewer
 
-
 [RColorBrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
-
-
 
 ```{r}
 library(RColorBrewer)
@@ -250,8 +237,6 @@ filled.contour(sin(r^2)*exp(-r/(68*pi)),
                asp=1)
 ```
 
-
-
 ### wesanderson
 
 [wesanderson](https://cran.r-project.org/web/packages/wesanderson/wesanderson.pdf)
@@ -265,7 +250,6 @@ palette <- wes_palette("GrandBudapest1", n = 4)
 heatmap(z, Colv=NA, Rowv=NA, col=palette, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
 ```
 
-
 ### colorspace
 
 [colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html)
@@ -278,5 +262,4 @@ z <- outer(x, y, function(x, y) sin(x)*sin(y))
 palette <- sequential_hcl(20, palette = "Blues")
 heatmap(z, Colv=NA, Rowv=NA, col=palette, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
 ```
-
-:::
+::::
