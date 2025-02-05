@@ -41,6 +41,8 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
 
 ## Wybrane metody statystyczne
@@ -73,8 +75,8 @@ Statystyka oferuje szeroki wachlarz metod do analizy danych. W dalszej części 
 
 -   Rozszerzenie regresji prostej na wiele zmiennych niezależnych
 -   Równanie: $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_k x_k + \epsilon$
--   Pozwala odpowiedzieć na pytanie: 
-    - *Jakie wielkości najlepiej opisują badane zjawisko?*
+-   Pozwala odpowiedzieć na pytanie:
+    -   *Jakie wielkości najlepiej opisują badane zjawisko?*
 
 ## Analiza wariancji (ANOVA)
 
@@ -84,7 +86,7 @@ Statystyka oferuje szeroki wachlarz metod do analizy danych. W dalszej części 
 
 ## Metody wielowymiarowe
 
--   Analiza  głównych składowych (PCA)
+-   Analiza głównych składowych (PCA)
 -   Analiza czynnikowa
 -   Analiza skupień
 -   Skalowanie wielowymiarowe
@@ -96,7 +98,6 @@ Opiera się na teorii prawdopodobieństwa.
 -   Estymacja punktowa i przedziałowa
 -   Testowanie hipotez statystycznych
 -   Estymacja nieparametryczna
-
 
 ## Testy parametryczne
 
@@ -121,7 +122,6 @@ Stosowane, gdy założenia testów parametrycznych nie są spełnione
 -   Skuteczne nawet dla prób o niewielkich liczebnościach
 -   Możliwe zastosowania dla prób nielosowych
 -   Prosta i czytelna idea
-
 
 ## Klasyfikacja
 
@@ -151,14 +151,10 @@ Oparte na twierdzeniu Bayesa
 
 ## 
 
-Statystyka oferuje zestaw narzędzi do analizy danych. 
+Statystyka oferuje zestaw narzędzi do analizy danych.
 
-Wybór odpowiedniej metody zależy od: 
+Wybór odpowiedniej metody zależy od:
 
-- Charakteru danych 
-- Celu analizy 
-- Założeń modelu
-
-
-
-
+-   Charakteru danych
+-   Celu analizy
+-   Założeń modelu

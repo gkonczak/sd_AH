@@ -41,6 +41,8 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
 
 # Statystyka <br> <br> Wybrane obszary zastosowań {.unnumbered}
