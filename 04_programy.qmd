@@ -41,14 +41,15 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
-
 
 ## Wprowadzenie
 
-Istnieje wiele programów do analizy statystycznej i przetwarzania danych. 
+Istnieje wiele programów do analizy statystycznej i przetwarzania danych.
 
-Każdy z nich ma swoje unikalne cechy, zalety i wady. 
+Każdy z nich ma swoje unikalne cechy, zalety i wady.
 
 W dalszej części przedstawiono zwięzłe informacje o tych programach.
 
@@ -60,23 +61,19 @@ W dalszej części przedstawiono zwięzłe informacje o tych programach.
 -   **Zalety:** intuicyjny interfejs, powszechna znajomość
 -   **Wady:** ograniczone możliwości dla bardzo dużych zbiorów danych
 
-
-
-![](pic/excel.png){.absolute top=0 right=0 width="250" height="150"}
+![](pic/excel.png){.absolute top="0" right="0" width="250" height="150"}
 
 ## Statistica
 
 <br>
 
-- Kompleksowe narzędzie do analizy statystycznej i data mining
-- Szeroki zakres metod statystycznych i wizualizacji
-- Przyjazny interfejs graficzny
-- **Zalety:** rozbudowane możliwości analityczne, łatwość obsługi
-- **Wady:** wysoki koszt licencji
+-   Kompleksowe narzędzie do analizy statystycznej i data mining
+-   Szeroki zakres metod statystycznych i wizualizacji
+-   Przyjazny interfejs graficzny
+-   **Zalety:** rozbudowane możliwości analityczne, łatwość obsługi
+-   **Wady:** wysoki koszt licencji
 
-
-
-![](pic/statistica.png){.absolute top=0 right=0 width="300" height="100"}
+![](pic/statistica.png){.absolute top="0" right="0" width="300" height="100"}
 
 ## SPSS (Statistical Package for the Social Sciences)
 
@@ -86,9 +83,7 @@ W dalszej części przedstawiono zwięzłe informacje o tych programach.
 -   **Zalety:** obszerna dokumentacja, przyjazny dla początkujących
 -   **Wady:** wysoki koszt, mniejsza elastyczność niż R
 
-
-
-![](pic/SPSS.svg){.absolute top=50 right=0 width="150" height="150"}
+![](pic/SPSS.svg){.absolute top="50" right="0" width="150" height="150"}
 
 ## MiniTab
 
@@ -98,9 +93,7 @@ W dalszej części przedstawiono zwięzłe informacje o tych programach.
 -   **Zalety:** dedykowane funkcje dla przemysłu
 -   **Wady:** mniej wszechstronny niż niektóre inne pakiety
 
-
-
-![](pic/MiniTab.png){.absolute top=0 right=0 width="100" height="100"}
+![](pic/MiniTab.png){.absolute top="0" right="0" width="100" height="100"}
 
 ## Mathematica
 
@@ -110,9 +103,7 @@ W dalszej części przedstawiono zwięzłe informacje o tych programach.
 -   **Zalety:** wszechstronność, zaawansowane obliczenia
 -   **Wady:** wysoki koszt
 
-
-
-![](pic/Mathematica.png){.absolute top=0 right=0 width="120" height="120"}
+![](pic/Mathematica.png){.absolute top="0" right="0" width="120" height="120"}
 
 ## R
 
@@ -122,10 +113,7 @@ W dalszej części przedstawiono zwięzłe informacje o tych programach.
 -   **Zalety:** elastyczność, bezpłatny dostęp, ciągły rozwój
 -   **Wady:** wymaga umiejętności programowania
 
-
-
-![](pic/R1.png){.absolute top=0 right=0 width="150" height="150"}
-
+![](pic/R1.png){.absolute top="0" right="0" width="150" height="150"}
 
 ## RStudio {.smaller}
 
@@ -145,7 +133,7 @@ RStudio to zintegrowane środowisko programistyczne przeznaczone do pracy w jęz
 
 ✅ Integracja z Git – wsparcie dla systemu kontroli wersji
 
-![](pic/RStudio1.png){.absolute top=0 right=0 width="300" height="100"}
+![](pic/RStudio1.png){.absolute top="0" right="0" width="300" height="100"}
 
 ## Python z bibliotekami statystycznymi
 
@@ -156,11 +144,9 @@ RStudio to zintegrowane środowisko programistyczne przeznaczone do pracy w jęz
 -   **Zalety:** elastyczność, szeroka społeczność, darmowy
 -   **Wady:** wymaga umiejętności programowania
 
+![](pic/python.png){.absolute top="0" right="0" width="150" height="150"}
 
-
-![](pic/python.png){.absolute top=0 right=0 width="150" height="150"}
-
-## SAS (Statistical Analysis System) 
+## SAS (Statistical Analysis System)
 
 -   Zaawansowana platforma do analizy danych i business intelligence
 -   Rozbudowane możliwości przetwarzania dużych zbiorów danych
@@ -168,9 +154,7 @@ RStudio to zintegrowane środowisko programistyczne przeznaczone do pracy w jęz
 -   **Zalety:** wydajność, wsparcie dla big data
 -   **Wady:** wysoki koszt, złożoność
 
-
-
-![](pic/SAS.svg){.absolute top=0 right=0 width="150" height="150"}
+![](pic/SAS.svg){.absolute top="0" right="0" width="150" height="150"}
 
 ## Tableau
 
@@ -180,9 +164,7 @@ RStudio to zintegrowane środowisko programistyczne przeznaczone do pracy w jęz
 -   **Zalety:** łatwość tworzenia atrakcyjnych wizualizacji
 -   **Wady:** ograniczone możliwości zaawansowanej analizy statystycznej
 
-
-
-![](pic/tableau.png){.absolute top=0 right=0 width="250" height="150"}
+![](pic/tableau.png){.absolute top="0" right="0" width="250" height="150"}
 
 ## Power BI
 
@@ -192,9 +174,7 @@ RStudio to zintegrowane środowisko programistyczne przeznaczone do pracy w jęz
 -   **Zalety:** integracja z ekosystemem Microsoft, przystępna cena
 -   **Wady:** mniej zaawansowane funkcje statystyczne niż dedykowane pakiety
 
-
-
-![](pic/PowerBI.png){.absolute top=0 right=0 width="300" height="100"}
+![](pic/PowerBI.png){.absolute top="0" right="0" width="300" height="100"}
 
 ## 
 

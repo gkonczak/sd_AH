@@ -41,8 +41,9 @@ format:
       echo: true
       warning: false
 link-citations: true
+project:
+  output-dir: "docs"
 ---
-
 
 ## Wprowadzenie {background-color="aquamarine"}
 
@@ -62,8 +63,6 @@ Jakość danych statystycznych określa się na podstawie sześciu głównych ko
 ::: {.footer style="font-size: 0.3em; background-color: grey; color: white; padding: 4px; text-align: right; width: 100%; box-sizing: border-box;"}
 GUS (2025)
 :::
-
-
 
 ## Użyteczność
 
@@ -101,9 +100,7 @@ GUS (2025)
 -   Możliwość łączenia danych z różnych źródeł
 -   Brak sprzeczności między powiązanymi danymi
 
-
 # Wybrane źródła <br> ogólnodostępnych danych
-
 
 ## Główny Urząd Statystyczny (GUS)
 
@@ -135,30 +132,18 @@ GUS (2025)
 -   Potrzeba szybkiego przetwarzania i aktualizacji
 -   Zachowanie prywatności i bezpieczeństwa danych
 
-
 ## Dane - przykład {background-color="white"}
 
-
-## {.smaller background-color="white"}
+##  {.smaller background-color="white"}
 
 ::: panel-tabset
 ## Opis zbioru
 
 `mtcars` to wbudowany zbiór danych w języku R, który zawiera informacje o 32 samochodach z lat 1973-74. Jest to jeden z najczęściej używanych zbiorów danych do demonstracji podstawowych operacji w analizie danych i statystyce.
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
-
-## Charakterystyka 
+## Charakterystyka
 
 Zbiór składa się z:
 
@@ -166,9 +151,7 @@ Zbiór składa się z:
 
 11 zmiennych
 
-
 ## Zmienne {.smaller background-color="white"}
-
 
 **mpg** - Miles per gallon (średnie zużycie paliwa)
 
@@ -192,8 +175,7 @@ Zbiór składa się z:
 
 **carb** - Liczba gaźników
 
-
-## Dane 
+## Dane
 
 ```{r}
 mtcars
@@ -216,10 +198,8 @@ datatable(mtcars, rownames=FALSE, options = list(
 ```
 :::
 
-
 ## 
 
 Wysoka jakość danych statystycznych jest niezbędna dla ich efektywnego wykorzystania.
 
 Ważne jest ciągłe doskonalenie metod zbierania, przetwarzania i udostępniania danych.
-
