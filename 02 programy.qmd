@@ -1,0 +1,208 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Oprogramowanie
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+
+## Wprowadzenie
+
+Istnieje wiele programów do analizy statystycznej i przetwarzania danych. 
+
+Każdy z nich ma swoje unikalne cechy, zalety i wady. 
+
+W dalszej części przedstawiono zwięzłe informacje o tych programach.
+
+## Microsoft Excel
+
+-   Powszechnie dostępny arkusz kalkulacyjny
+-   Podstawowe funkcje statystyczne i wizualizacja danych
+-   Dodatek *Analysis ToolPak* do zaawansowanych analiz
+-   **Zalety:** intuicyjny interfejs, powszechna znajomość
+-   **Wady:** ograniczone możliwości dla bardzo dużych zbiorów danych
+
+
+
+![](pic/excel.png){.absolute top=0 right=0 width="250" height="150"}
+
+## Statistica
+
+<br>
+
+- Kompleksowe narzędzie do analizy statystycznej i data mining
+- Szeroki zakres metod statystycznych i wizualizacji
+- Przyjazny interfejs graficzny
+- **Zalety:** rozbudowane możliwości analityczne, łatwość obsługi
+- **Wady:** wysoki koszt licencji
+
+
+
+![](pic/statistica.png){.absolute top=0 right=0 width="300" height="100"}
+
+## SPSS (Statistical Package for the Social Sciences)
+
+-   Popularny w naukach społecznych i biznesie
+-   Intuicyjny interfejs graficzny
+-   Zaawansowane analizy statystyczne i raportowanie
+-   **Zalety:** obszerna dokumentacja, przyjazny dla początkujących
+-   **Wady:** wysoki koszt, mniejsza elastyczność niż R
+
+
+
+![](pic/SPSS.svg){.absolute top=50 right=0 width="150" height="150"}
+
+## MiniTab
+
+-   Narzędzie do analizy statystycznej i poprawy jakości
+-   Przyjazny interfejs i łatwość użycia
+-   Specjalizacja w analizach Six Sigma i kontroli jakości
+-   **Zalety:** dedykowane funkcje dla przemysłu
+-   **Wady:** mniej wszechstronny niż niektóre inne pakiety
+
+
+
+![](pic/MiniTab.png){.absolute top=0 right=0 width="100" height="100"}
+
+## Mathematica
+
+-   Zaawansowany system do obliczeń symbolicznych i numerycznych
+-   Rozbudowane możliwości wizualizacji danych
+-   Wsparcie dla uczenia maszynowego i analizy danych
+-   **Zalety:** wszechstronność, zaawansowane obliczenia
+-   **Wady:** wysoki koszt
+
+
+
+![](pic/Mathematica.png){.absolute top=0 right=0 width="120" height="120"}
+
+## R
+
+-   Darmowy i otwartoźródłowy język programowania statystycznego
+-   Ogromna społeczność i tysiące pakietów rozszerzeń
+-   Zaawansowane możliwości analityczne i graficzne
+-   **Zalety:** elastyczność, bezpłatny dostęp, ciągły rozwój
+-   **Wady:** wymaga umiejętności programowania
+
+
+
+![](pic/R1.png){.absolute top=0 right=0 width="150" height="150"}
+
+
+## RStudio {.smaller}
+
+<br>
+
+RStudio to zintegrowane środowisko programistyczne przeznaczone do pracy w języku **R**. Jest szeroko stosowane w analizie danych, statystyce i uczeniu maszynowym.
+
+✅ Edytor kodu – podświetlanie składni, autouzupełnianie i podpowiedzi
+
+✅ Konsola R – interaktywne wykonywanie kodu
+
+✅ Przeglądarka obiektów – podgląd zmiennych, wykresów i plików
+
+✅ Obsługa Quarto i R Markdown – łatwe tworzenie raportów i prezentacji
+
+✅ Zarządzanie pakietami – intuicyjna instalacja i aktualizacja bibliotek
+
+✅ Integracja z Git – wsparcie dla systemu kontroli wersji
+
+![](pic/RStudio1.png){.absolute top=0 right=0 width="300" height="100"}
+
+## Python z bibliotekami statystycznymi
+
+-   Wszechstronny język programowania
+-   Dostępne biblioteki jak: NumPy, Pandas, SciPy
+-   Popularne narzędzie w data science i uczeniu maszynowym
+-   Rozbudowane możliwości wizualizacji (np. matplotlib, seaborn)
+-   **Zalety:** elastyczność, szeroka społeczność, darmowy
+-   **Wady:** wymaga umiejętności programowania
+
+
+
+![](pic/python.png){.absolute top=0 right=0 width="150" height="150"}
+
+## SAS (Statistical Analysis System) 
+
+-   Zaawansowana platforma do analizy danych i business intelligence
+-   Rozbudowane możliwości przetwarzania dużych zbiorów danych
+-   Popularne w korporacjach i instytucjach rządowych
+-   **Zalety:** wydajność, wsparcie dla big data
+-   **Wady:** wysoki koszt, złożoność
+
+
+
+![](pic/SAS.svg){.absolute top=0 right=0 width="150" height="150"}
+
+## Tableau
+
+-   Narzędzie do interaktywnej wizualizacji danych
+-   Intuicyjny interfejs do tworzenia dashboardów
+-   Możliwość integracji z różnymi źródłami danych
+-   **Zalety:** łatwość tworzenia atrakcyjnych wizualizacji
+-   **Wady:** ograniczone możliwości zaawansowanej analizy statystycznej
+
+
+
+![](pic/tableau.png){.absolute top=0 right=0 width="250" height="150"}
+
+## Power BI
+
+-   Platforma business intelligence od Microsoft
+-   Integracja z innymi produktami Microsoft
+-   Tworzenie interaktywnych raportów i dashboardów
+-   **Zalety:** integracja z ekosystemem Microsoft, przystępna cena
+-   **Wady:** mniej zaawansowane funkcje statystyczne niż dedykowane pakiety
+
+
+
+![](pic/PowerBI.png){.absolute top=0 right=0 width="300" height="100"}
+
+## 
+
+Wybór odpowiedniego narzędzia zależy od:
+
+-   Specyfiki analizowanych danych
+-   Wymaganych metod statystycznych
+-   Budżetu i dostępnych zasobów
+-   Umiejętności technicznych użytkowników
+
+Warto rozważyć kombinację różnych narzędzi dla optymalnych rezultatów.

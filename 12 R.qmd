@@ -1,0 +1,250 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Podstawy pracy <br> z programem R
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+```{r}
+library(ggplot2)
+library(readxl)
+```
+
+
+## 1. Wprowadzenie do R
+
+R to język programowania i środowisko do analizy statystycznej i wizualizacji danych.
+
+Główne cechy:
+
+- Darmowy i otwartoźródłowy
+- Bogata biblioteka pakietów
+- Wsparcie społeczności
+
+## 2. Instalacja R i RStudio
+
+
+
+![](pic/R.png){.absolute top=0 right=0 width=200 height=200}
+
+
+1. Pobierz R z [CRAN](https://cran.r-project.org/)
+2. Zainstaluj RStudio ze strony [posit.co](https://posit.co/download/rstudio-desktop/)
+
+
+
+## 3. Interfejs RStudio
+
+RStudio składa się z czterech głównych paneli:
+- Edytor kodu
+- Konsola
+- Środowisko/Historia
+- Pliki/Wykresy/Pakiety/Pomoc
+
+
+## RStudio
+
+![](pic/RStudio.png)
+
+
+## 4. Podstawowe operacje arytmetyczne {.smaller}
+
+```{r}
+2 + 2
+10 - 5
+3 * 4
+20 / 5
+2^3
+
+```
+
+
+
+## 5. Zmienne i przypisanie {.smaller}
+
+```{r}
+x <- 10
+y <- 5
+z <- x + y
+print(z)
+```
+
+
+
+
+## 6. Typy danych
+
+- Numeryczne
+- Znakowe
+- Logiczne
+- Czynnikowe
+
+
+```{r}
+num <- 10.5
+text <- "Hello, R!"
+logic <- TRUE
+factor <- factor(c("A", "B", "C"))
+```
+
+
+
+## 7. Wektory
+
+
+```{r}
+vec <- c(1, 2, 3, 4, 5)
+print(vec)
+print(vec) # Indeksowanie
+```
+
+
+
+## 8. Funkcje
+
+```{r}
+kwadrat <- function(x) {
+return(x^2)
+}
+# Używanie funkcji
+wynik <- kwadrat(4)
+print(wynik)
+```
+
+
+
+
+## 9. Pakiety
+
+Instalacja pakietu:
+
+```{r}
+#| eval: false
+install.packages("ggplot2")
+```
+
+
+
+Ładowanie pakietu:
+
+```{r}
+library(ggplot2)
+```
+
+
+
+## 10. Ramki danych
+
+
+```{r}
+df <- data.frame(
+name = c("Alice", "Bob", "Charlie"),
+age = c(25, 30, 35),
+height = c(165, 180, 175)
+)
+print(df)
+```
+
+
+
+## 11. Wczytywanie danych
+
+
+```{r}
+#| eval: false
+
+# Z pliku CSV
+data <- read.csv("data.csv")
+
+# Z pliku Excel
+library(readxl)
+data <- read_excel("data.xlsx")
+```
+
+
+
+## 12. Podstawowa analiza danych
+
+```{r}
+summary(df)
+```
+
+
+
+
+## 13. Wizualizacja danych
+
+```{r}
+ggplot(df, aes(x = name, y = age)) +
+geom_bar(stat = "identity") +
+theme_minimal()
+```
+
+
+
+
+## 14. Kontrola przepływu
+
+```{r}
+for (i in 1:5) {
+print(paste("Iteracja:", i))
+}
+x <- 10
+if (x > 5) {
+print("x jest większe niż 5")
+} else {
+print("x jest mniejsze lub równe 5")
+}
+```
+
+
+
+
+## 15. Podsumowanie
+
+- R to potężne narzędzie do analizy danych
+- Bogata biblioteka pakietów rozszerza możliwości
+- Społeczność R oferuje wsparcie i zasoby edukacyjne
+- Praktyka jest kluczem do opanowania R
+
+
+
+

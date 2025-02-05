@@ -1,0 +1,189 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Statystyka <br> Wybrane obszary zastosowań
+author: 
+  - name: Grzegorz Kończak
+    url: http://stat.ue.katowice.pl
+    affiliation: University of Economics in Katowice
+    affiliation-url: http://ue.katowice.pl
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie (2025)"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 2
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+## Details
+
+<details>
+
+<summary>P.S. Laplace (1820) </summary>
+
+*Godne uwagi jest to, że nauka, która zaczęła się od rozważania gier losowych, powinna stać się najważniejszą dziedziną ludzkiej wiedzy.*
+
+P.S. Laplace (1820) *Theorie analytique des probabilities*
+</details>
+
+
+
+::: {.footer style="font-size: 0.3em; background-color: grey; color: white; padding: 4px; text-align: right; width: 100%; box-sizing: border-box;"}
+**Jeden wykres jest wart więcej niż tysiąc liczb** (parafraza przysłowia)
+:::
+
+
+
+
+##
+
+::: {.callout-important}
+
+
+To jest ważne
+:::
+
+##
+
+::: {.callout-warning collapse="true"}
+## Tytuł uwagi
+
+Uwaga. Tak trzeba
+
+-   Początki Data Mining
+-   Ewolucja technik i narzędzi
+-   Współczesne zastosowania
+
+
+:::
+
+
+##
+
+
+::: {.callout-note title="Tytuł uwagi" collapse="true"}
+
+Uwaga. Tak trzeba
+
+-   Początki Data Mining
+-   Ewolucja technik i narzędzi
+-   Współczesne zastosowania
+
+:::
+
+
+##
+
+:::{.callout-caution appearance="minimal"}
+# To jest tytuł
+
+Dlaczego matematycy nie umierają?
+
+Bo ich problemom nigdy nie udaje się znaleźć rozwiązania!
+
+:::
+
+
+##
+
+:::{.callout-caution appearance="simple"}
+# To jest tytuł
+
+Jak znaleźć zagubionego matematyka?
+
+Zastanów się, gdzie ostatnio widziałeś jego notatki.
+
+:::
+
+
+##
+
+:::{.callout-warning}
+# To jest ostrzeżenie
+Uwaga: To uwaga
+
+Jestem z kobry
+
+:::
+
+##
+
+:::{.callout-important}
+# To jest informacja
+
+Trzech statystyków idzie na polowanie. Widzą jelenia. Pierwszy strzela, ale chybia o metr w lewo. Drugi strzela, ale chybia o metr w prawo. Trzeci krzyczy: "Trafiliśmy go!"
+
+:::
+
+##
+
+:::{.callout-note}
+# To jest jakś notka
+
+Matematyk, fizyk i inżynier mają za zadanie obliczyć objętość czerwonej gumowej piłki.
+Inżynier zmierzył średnicę i obliczył objętość korzystając ze wzoru na objętość kuli.
+Fizyk zanurzył piłkę w zbiorniku z wodą i zmierzył ilość wypartej cieczy.
+Matematyk zamknął się w biurze na trzy dni, po czym wyszedł z triumfalnym okrzykiem: "Udowodniłem, że taka piłka istnieje!"
+
+:::
+
+##
+
+:::{.callout-tip collapse="true"}
+# To jest dobry typ (tip)
+
+Dlaczego statystycy nie lubią grać w kręgle?
+Bo zawsze próbują znormalizować rozkład pinów.
+
+:::
+
+##
+
+:::{.callout-tip collapse="true" appearance="simple"}
+# To jest dobry typ (tip)
+
+Matematyk stoi przed tablicą i kończy długi dowód mówiąc: "...co jest oczywiste". Student pyta: "Przepraszam, ale dlaczego to jest oczywiste?" Matematyk patrzy na tablicę przez kilka minut, wychodzi z sali, wraca po godzinie i mówi: "Tak, to rzeczywiście jest oczywiste."
+
+:::
+
+##
+
+:::{.callout-tip collapse="true" appearance="minimal"}
+# To jest dobry typ (tip)
+
+Co mówi statystyk, gdy wkłada głowę do piekarnika, a stopy do zamrażarki? "W średniej czuję się całkiem komfortowo."
+
+:::
+
+

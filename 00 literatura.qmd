@@ -1,0 +1,64 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Wybrane obszary zastosowań
+author: 
+  - name: Grzegorz Kończak
+    url: http://stat.ue.katowice.pl
+    affiliation: University of Economics in Katowice
+    affiliation-url: http://ue.katowice.pl
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: vertical
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    toc: true
+  # toc-location: left
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+# bibliography: bibliografia.bib
+link-citations: true
+# csl: apa.csl # apa-single-spaced.csl #
+---
+
+## Wprowadzenie
+
+## Literatura
+
+## Literatura podstawowa
+
+## Literatura średniozaawansowana
+
+## Literatura zaawansowana
+
+## Literatura popularnonaukowa
+
+

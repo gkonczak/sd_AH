@@ -1,0 +1,282 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Podstawy wizualizacji danych w R
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 2
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+
+
+## Typy danych i funkcja *plot* {.scrollable}
+
+```{r}
+class(rivers)
+plot(rivers)
+```
+
+
+
+```{r}
+class(cars)
+plot(cars, main='Prędkość i odległość do zatrzymania samochodu',xlab='Prędkość', ylab='Odległość')
+```
+
+```{r}
+class(iris)
+plot(iris[-5],col=iris[,5])
+```
+
+```{r}
+class(chickwts)
+plot(chickwts$weight~chickwts$feed)
+```
+
+```{r}
+class(AirPassengers)
+plot(AirPassengers)
+```
+
+```{r}
+class(Titanic)
+plot(Titanic)
+```
+
+```{r}
+plot(Titanic,shade=TRUE)
+```
+
+```{r}
+library(TeachingDemos)
+plot(dice(12,4))
+
+```
+
+## Histogram
+
+```{r}
+hist(rivers, main = '')
+```
+
+```{r}
+hist(rivers,breaks=c(0,400,800,1200,2000,4000),xlab='Długość w milach',ylab='Gęstość',main='')
+```
+
+## Wykres punktowy
+
+```{r, fig.height=12}
+par(mfrow=c(2,1))
+dotchart(VADeaths)
+dotchart(t(VADeaths))
+
+```
+
+## Wykres słupkowy
+
+```{r, fig.height=10}
+par(mfrow=c(2,1))
+barplot(VADeaths,
+         col = c("blue", "lightblue", "lightcyan", 
+                 "lavender", "pink"),
+        legend = rownames(VADeaths))
+barplot(VADeaths,
+         col = c("blue", "lightblue", "lightcyan", 
+                 "lavender", "pink"),
+        legend = rownames(VADeaths), beside = TRUE)
+
+```
+
+## Wykres kołowy
+
+```{r}
+pie(table(mtcars$gear),labels=c('3 biegi','4 biegi', '5 biegów'),main='')
+```
+
+## Układ wykresów
+
+```{r, fig.height=18}
+# Umieszczenie kilku wykresów w jednym obszarze graficznym.
+library(ggplot2)
+par(mfrow=c(4,1))
+plot(price ~ carat, data = diamonds,  xlab = "Waga (karaty)", ylab = "Cena", col = "darkblue", pch = 20)
+hist(diamonds$price, breaks = 30, col = "skyblue",  main='', xlab = "Cena", ylab = "Liczba diamentów")
+boxplot(price ~cut , data = diamonds,  xlab = "Typ szlifu", ylab = "Cena", col = c("#FF9999", "#FFCC99", "#FFFF99", "#CCFF99", "#99FF99"))
+avg_price <- tapply(diamonds$price, diamonds$color, mean)
+barplot(avg_price,  xlab = "Kolor", ylab = "Średnia cena", ylim=c(0,7000),col = viridis::viridis(length(avg_price)))
+legend("topleft", legend = names(avg_price), fill = viridis::viridis(length(avg_price)))
+
+```
+
+## Palety kolorystyczne {.smaller}
+
+::: panel-tabset
+
+### grDevices
+
+
+::: panel-tabset
+
+### heat.colors
+
+```{r}
+paleta<- heat.colors(5)    	# paleta z 5 kolorami
+x <- seq(0, 2*pi, length.out=100)
+y <- seq(0, 2*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+
+
+```
+
+
+### topo.colors
+
+```{r}
+paleta<- topo.colors(8) 	# paleta z 8 kolorami
+x <- seq(0, 2*pi, length.out=100)
+y <- seq(0, 2*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+
+
+```
+
+
+### cm.colors
+
+```{r}
+paleta<- cm.colors(8) 	# paleta z 8 kolorami
+x <- seq(0, 2*pi, length.out=100)
+y <- seq(0, 2*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+
+
+```
+
+### terrain.colors
+
+```{r}
+paleta<- terrain.colors(6) 	# paleta z 6 kolorami
+x <- seq(0, 2*pi, length.out=100)
+y <- seq(0, 2*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+
+
+```
+
+### rainbow
+
+
+```{r}
+paleta<- rainbow(20) 	
+x <- seq(0, 8*pi, length.out=100)
+y <- seq(0, 8*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+heatmap(z, Colv=NA, Rowv=NA, col=paleta, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+
+
+```
+
+
+:::
+
+### RColorBrewer
+
+
+[RColorBrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+
+
+
+```{r}
+library(RColorBrewer)
+x <- seq(0, 2*pi, length.out=100)
+y <- seq(0, 2*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+palette <- brewer.pal(9, "RdYlBu")
+heatmap(z, Colv=NA, Rowv=NA, col=palette, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+
+```
+
+### viridis
+
+[viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+
+```{r}
+library(viridis)
+x <- y <- seq(-2*pi, 2*pi, len = 80)
+r <- sqrt(outer(2*x^2, y^2, "+"))
+filled.contour(sin(r^2)*exp(-r/(68*pi)), 
+               axes=FALSE,
+               color.palette=viridis,
+               asp=1)
+```
+
+
+
+### wesanderson
+
+[wesanderson](https://cran.r-project.org/web/packages/wesanderson/wesanderson.pdf)
+
+```{r}
+library(wesanderson)
+x <- seq(0, 4*pi, length.out=100)
+y <- seq(0, 4*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+palette <- wes_palette("GrandBudapest1", n = 4)
+heatmap(z, Colv=NA, Rowv=NA, col=palette, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+```
+
+
+### colorspace
+
+[colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html)
+
+```{r}
+library(colorspace)
+x <- seq(0, 4*pi, length.out=100)
+y <- seq(0, 4*pi, length.out=100)
+z <- outer(x, y, function(x, y) sin(x)*sin(y))
+palette <- sequential_hcl(20, palette = "Blues")
+heatmap(z, Colv=NA, Rowv=NA, col=palette, scale="none", xlab="", ylab="", labRow = FALSE, labCol = FALSE)
+```
+
+:::

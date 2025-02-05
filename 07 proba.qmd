@@ -1,0 +1,136 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Metody doboru próby
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+
+## Wprowadzenie  
+- Populacja i próba 
+- Próba losowa i nielosowa
+- Reprezentatywność próby
+
+
+
+## Podstawowe pojęcia  
+- **Jednostka badawcza** – pojedynczy element populacji  
+- **Populacja** – zbiór wszystkich elementów badania  
+- **Próba losowa** – wybrana grupa reprezentatywna  
+- **Błąd doboru próby** – różnice między próbką a populacją  
+
+
+
+## Podział metod doboru próby  
+- **Dobór losowy** a **dobór nielosowy**  
+- Kiedy stosować którą metodę?  
+
+
+
+## **Metody doboru losowego**  
+
+## Próba prosta  
+- Każda jednostka ma równą szansę na wybór  
+- **Przykład:** losowanie numerów PESEL  
+
+
+
+## Losowanie warstwowe  
+- Populacja dzielona na **homogeniczne podgrupy**  
+- **Przykład:** wybór $k$ uczniów z każdej klasy  
+
+
+
+## Losowanie systematyczne
+- Wybieranie co **k-tej** jednostki z listy  
+- **Przykład:** Wybór z listy osoby: 5, 15, 25, ...  
+- **Przykład:** badanie klientów sklepu – co 20. osoba  
+
+
+
+## Losowanie zespołowe (klastrowe)  
+- Wybór całych grup zamiast pojedynczych jednostek  
+- **Przykład:** losowanie gospodarstw domowych, zamiast osób 
+- **Przykład:** losowanie szkół, zamiast pojedynczych uczniów  
+
+
+
+## Losowanie wielostopniowe  (np. dwustopniowe)
+- Połączenie kilku metod losowych  
+- **Przykład:** wylosowanie gospodarstwa domowego → losowanie osoby 
+- **Przykład:** wybór miast → szkół → uczniów  
+
+
+
+## **Metody doboru nielosowego**  
+
+## Próba kwotowa  
+- Wybór jednostek na podstawie określonych cech  (grupa wiekowa, miejsce zamieszka)
+- **Przykład:** badanie opinii publicznej  
+
+
+
+## Dobór celowy  
+- Wybór najbardziej typowych lub eksperckich jednostek  
+- **Przykład:** analiza liderów opinii  
+
+
+
+## Dobór przypadkowy (konwieniencji)  
+- Wybór jednostek najłatwiej dostępnych  
+- **Przykład:** ankieta wśród znajomych  
+
+
+
+## Dobór śnieżnej kuli  
+- Rekrutacja kolejnych uczestników przez osoby już badane  
+- **Przykład:** badanie rzadkich grup społecznych  
+
+
+
+## Wybór metody  
+- Zależność od celu badania  
+- Budżet i czas  
+- Ryzyko błędu i **reprezentatywność**  
+
+
+
+

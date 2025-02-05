@@ -1,0 +1,179 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Statystyka <br> Wybrane obszary zastosowań
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie (2025)"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 2
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+# Statystyka <br> <br> Wybrane obszary zastosowań {.unnumbered}
+
+## Wprowadzenie {.unnumbered}
+
+Statystyka znajduje szerokie zastosowanie w wielu dziedzinach nauki i praktyki. Pozwala na analizę danych, wyciąganie wniosków i podejmowanie decyzji w warunkach niepewności.
+
+
+
+# Przykładowe zastosowania
+
+## Ekonomia {.smaller}
+
+-   Prognozowanie trendów gospodarczych
+-   Analiza inflacji i bezrobocia
+-   Badanie zachowań konsumentów
+-   Modelowanie popytu i podaży
+-   Testowanie hipotez ekonomicznych
+-   Analiza zależności między zmiennymi
+-   Estymacja modeli regresyjnych
+-   Badania rozwoju gospodarczego (PKB, nierówności dochodowe)
+-   Badania rynku pracy (analiza mobilności zawodowej, wynagrodzenia)
+
+
+## Zarządzanie {.smaller background-color="limegreen"}
+
+-   Optymalizacja procesów produkcyjnych
+-   Analiza efektywności pracowników
+-   Badanie satysfakcji klientów
+-   Wspomaganie decyzji strategicznych
+-   Analiza ryzyka i podejmowanie decyzji
+-   Zarządzanie zasobami ludzkimi (rotacja pracowników, rekrutacja)
+-   Zarządzanie łańcuchem dostaw i logistyką
+-   Zarządzanie finansami
+-   Zarządzanie jakością
+-   Statystyczna kontrola jakości
+
+## Finanse {.smaller}
+
+-   Analiza ryzyka inwestycyjnego
+-   Wycena instrumentów finansowych
+-   Prognozowanie kursów walut
+-   Zarządzanie portfelem inwestycyjnym
+-   Analiza ryzyka i rynków finansowych (ocena zmienności, modele wyceny aktywów, analiza portfela inwestycyjnego)
+-   Analiza efektywności firm i rynków (benchmarking, modele wydajności)
+-   Statystyka ubezpieczeniowa i aktuarialna (obliczanie składek, przewidywanie ryzyka)
+
+
+## Inżynieria
+
+-   Kontrola i sterowanie jakością produkcji
+-   Ocena niezawodności
+-   Analiza wytrzymałości materiałów
+-   Optymalizacja procesów technologicznych
+-   Modelowanie zjawisk fizycznych
+-   Inżynieria oprogramowania i analiza danych
+-   Robotyka i inżynieria mechaniczna
+
+## Medycyna {.smaller}
+
+-   Badania kliniczne nowych leków
+-   Badania nowych metod leczenia
+-   Analiza skuteczności terapii
+-   Epidemiologia chorób zakaźnych
+-   Prognozowanie przebiegu chorób
+-   Diagnostyka i analiza biomedyczna
+-   Genetyka i medycyna personalizowana
+-   Zarządzanie opieką zdrowotną
+-   AI i Big Data w medycynie
+
+
+
+## Biologia
+
+-   Analiza bioróżnorodności
+-   Badanie procesów ewolucyjnych
+-   Modelowanie ekosystemów
+-   Ocena wpływu czynników środowiskowych
+
+## Genetyka
+
+-   Analiza sekwencji DNA
+-   Badanie dziedziczenia cech
+-   Identyfikacja genów odpowiedzialnych za choroby
+-   Ocena ryzyka genetycznego
+
+## Psychologia
+
+-   Analiza wyników testów psychologicznych
+-   Badanie skuteczności terapii
+-   Modelowanie procesów poznawczych
+-   Ocena czynników wpływających na zachowanie
+
+## Socjologia
+
+-   Analiza trendów społecznych
+-   Badanie opinii publicznej
+-   Sondaże wyborcze
+-   Modelowanie sieci społecznych
+-   Ocena skuteczności programów społecznych
+
+## Marketing
+
+-   Segmentacja rynku
+-   Analiza skuteczności kampanii reklamowych
+-   Prognozowanie sprzedaży
+-   Badanie preferencji konsumentów
+
+## Sport
+
+-   Analiza wyników sportowych
+-   Optymalizacja strategii treningowych
+-   Prognozowanie wyników zawodów
+-   Ocena skuteczności taktyk
+
+## Meteorologia
+
+-   Prognozowanie pogody
+-   Analiza zmian klimatycznych
+-   Modelowanie zjawisk atmosferycznych
+-   Ocena ryzyka katastrof naturalnych
+
+## Edukacja
+
+-   Analiza efektywności metod nauczania
+-   Ocena postępów uczniów
+-   Prognozowanie wyników egzaminów
+-   Badanie czynników wpływających na osiągnięcia edukacyjne
+
+# 
+
+Statystyka jest uniwersalnym narzędziem, które znajduje zastosowanie w niemal każdej dziedzinie nauki i praktyki. Pozwala na lepsze zrozumienie otaczającego nas świata i podejmowanie bardziej świadomych decyzji.
+
+
+

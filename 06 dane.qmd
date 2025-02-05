@@ -1,0 +1,225 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Dane. <br> Pozyskanie i jakość danych
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+
+## Wprowadzenie {background-color="aquamarine"}
+
+Dane statystyczne stanowią podstawę wielu analiz i decyzji. Ich jakość jest kluczowa dla uzyskania wiarygodnych wyników.
+
+## Komponenty jakości danych
+
+Jakość danych statystycznych określa się na podstawie sześciu głównych komponentów:
+
+-   Użyteczność
+-   Kompletność
+-   Terminowość
+-   Przejrzystość
+-   Porównywalność
+-   Spójność
+
+::: {.footer style="font-size: 0.3em; background-color: grey; color: white; padding: 4px; text-align: right; width: 100%; box-sizing: border-box;"}
+GUS (2025)
+:::
+
+
+
+## Użyteczność
+
+-   Stopień, w jakim dane spełniają potrzeby użytkowników
+-   Zgodność z wymaganiami odbiorców
+-   Przydatność do podejmowania decyzji
+
+## Kompletność
+
+-   Zakres danych odpowiadający potrzebom
+-   Optymalna liczba informacji
+-   Brak istotnych braków w danych
+
+## Terminowość
+
+-   Aktualność danych
+-   Regularność aktualizacji
+-   Punktualność publikacji
+
+## Przejrzystość
+
+-   Łatwość zrozumienia danych
+-   Dostępność metadanych
+-   Czytelna prezentacja informacji
+
+## Porównywalność
+
+-   Możliwość porównań w czasie
+-   Porównywalność między regionami i krajami
+-   Spójność definicji i klasyfikacji
+
+## Spójność
+
+-   Wewnętrzna zgodność danych
+-   Możliwość łączenia danych z różnych źródeł
+-   Brak sprzeczności między powiązanymi danymi
+
+
+# Wybrane źródła <br> ogólnodostępnych danych
+
+
+## Główny Urząd Statystyczny (GUS)
+
+-   Podstawowe źródło danych statystycznych w Polsce
+-   Szeroki zakres tematyczny: demografia, gospodarka, społeczeństwo
+-   Dostęp przez stronę internetową: [stat.gov.pl](https://stat.gov.pl)
+
+## Eurostat
+
+-   Urząd statystyczny Unii Europejskiej
+-   Dane porównywalne dla krajów członkowskich UE
+-   Dostęp online: [ec.europa.eu/eurostat](https://ec.europa.eu/eurostat)
+
+## Bank Światowy
+
+-   Globalne dane ekonomiczne i rozwojowe
+-   Wskaźniki dla krajów z całego świata
+-   Platforma danych: [data.worldbank.org](https://data.worldbank.org)
+
+## Znaczenie jakości danych
+
+-   Podstawa wiarygodnych analiz i decyzji
+-   Wpływ na politykę publiczną i strategie biznesowe
+-   Kluczowa rola w badaniach naukowych
+
+## Wyzwania w zapewnieniu jakości danych
+
+-   Rosnąca ilość i złożoność danych
+-   Potrzeba szybkiego przetwarzania i aktualizacji
+-   Zachowanie prywatności i bezpieczeństwa danych
+
+
+## Dane - przykład {background-color="white"}
+
+
+## {.smaller background-color="white"}
+
+::: panel-tabset
+## Opis zbioru
+
+`mtcars` to wbudowany zbiór danych w języku R, który zawiera informacje o 32 samochodach z lat 1973-74. Jest to jeden z najczęściej używanych zbiorów danych do demonstracji podstawowych operacji w analizie danych i statystyce.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Charakterystyka 
+
+Zbiór składa się z:
+
+32 obserwacji
+
+11 zmiennych
+
+
+## Zmienne {.smaller background-color="white"}
+
+
+**mpg** - Miles per gallon (średnie zużycie paliwa)
+
+**cyl** - Liczba cylindrów
+
+**disp** - Pojemność silnika (w calach sześciennych)
+
+**hp** - Moc silnika (w koniach mechanicznych)
+
+**drat** - Przełożenie mostu napędowego
+
+**wt** - Waga samochodu (w tysiącach funtów)
+
+**qsec** - Czas przejazdu 1/4 mili (w sekundach)
+
+**vs** - Typ silnika (0 = V-silnik, 1 = silnik rzędowy)
+
+**am** - Typ skrzyni biegów (0 = automatyczna, 1 = manualna)
+
+**gear** - Liczba biegów
+
+**carb** - Liczba gaźników
+
+
+## Dane 
+
+```{r}
+mtcars
+```
+
+## kable
+
+```{r}
+library(kableExtra)
+kable(mtcars[1:6,])
+```
+
+## DT {background-color="#0c3064"}
+
+```{r}
+library(DT)
+datatable(mtcars, rownames=FALSE, options = list(
+  pageLength = 5, autoWidth = TRUE
+))
+```
+:::
+
+
+## 
+
+Wysoka jakość danych statystycznych jest niezbędna dla ich efektywnego wykorzystania.
+
+Ważne jest ciągłe doskonalenie metod zbierania, przetwarzania i udostępniania danych.
+

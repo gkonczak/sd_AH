@@ -1,0 +1,146 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Skale pomiarowe
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+## Wprowadzenie {background-gradient="linear-gradient(to bottom , #17b2c3, #082b65)"}
+
+Skale pomiarowe są kluczowym elementem w statystyce, określającym sposób pomiaru i analizy danych. Wyróżniamy cztery główne typy skal:
+
+-   Nominalna
+-   Porządkowa
+-   Przedziałowa
+-   Ilorazowa
+
+## Skala nominalna
+
+-   Wartości nie mają naturalnego uporządkowania
+-   Przykłady: kolory, płeć, nazwa uczelni, grupa krwi
+-   Dozwolone operacje:
+    -   Zliczanie
+    -   Obliczanie frakcji (procent, odsetek całości)
+    -   Wyznaczanie dominanty (mody)
+
+## Skala porządkowa
+
+-   Wartości mają określony porządek, ale bez określonych odległości między nimi
+-   Przykłady: poziom wykształcenia, miejsce w rankingu
+-   Dozwolone operacje (oprócz nominalnych):
+    -   Rangowanie
+    -   Obliczanie centyli, w tym mediany
+    -   Wyznaczanie minimum i maksimum
+
+## Skala przedziałowa
+
+-   Można obliczyć różnice między wartościami
+-   Przykłady: temperatura w stopniach Celsjusza, data
+-   Dozwolone operacje (oprócz porządkowych):
+    -   Średnia arytmetyczna, wariancja, odchylenie standardowe
+    -   Współczynnik korelacji Pearsona
+    -   Dodawanie i odejmowanie
+    -   Mnożenie i dzielenie przez stałą
+
+## Skala ilorazowa {.scrollable}
+
+-   Można obliczać różnice i ilorazy wartości
+-   Przykłady: masa, długość, wysokość
+-   Dozwolone operacje (oprócz przedziałowych):
+    -   Wyliczanie zmian względnych (procentowych)
+    -   Mnożenie i dzielenie dwóch wielkości
+    -   Logarytmowanie, potęgowanie
+    -   Obliczanie średniej kwadratowej, harmonicznej, geometrycznej
+
+##  {.scrollable background-color="blue" style="font-size: 50%;"}
+
+| Operacja / Skala | Nominalna | Porządkowa | Przedziałowa | Ilorazowa |
+|----------------|:------------:|:------------:|:------------:|:------------:|
+| Zliczanie | ✓ | ✓ | ✓ | ✓ |
+| Obliczanie frakcji | ✓ | ✓ | ✓ | ✓ |
+| Wyznaczanie dominanty | ✓ | ✓ | ✓ | ✓ |
+| Rangowanie |  | ✓ | ✓ | ✓ |
+| Obliczanie centyli (w tym mediany) |  | ✓ | ✓ | ✓ |
+| Wyznaczanie minimum i maksimum |  | ✓ | ✓ | ✓ |
+| Średnia arytmetyczna |  |  | ✓ | ✓ |
+| Wariancja, odchylenie standardowe |  |  | ✓ | ✓ |
+| Współczynnik korelacji Pearsona |  |  | ✓ | ✓ |
+| Dodawanie i odejmowanie |  |  | ✓ | ✓ |
+| Mnożenie i dzielenie przez stałą |  |  | ✓ | ✓ |
+| Wyliczanie zmian względnych (%) |  |  |  | ✓ |
+| Mnożenie i dzielenie dwóch wielkości |  |  |  | ✓ |
+| Logarytmowanie, potęgowanie |  |  |  | ✓ |
+| Średnia kwadratowa, harmoniczna, geometryczna |  |  |  | ✓ |
+
+
+
+## Znaczenie skal pomiarowych
+
+-   Determinują możliwe do zastosowania analizy statystyczne
+-   Wpływają na wybór testów statystycznych (parametryczne vs nieparametryczne)
+-   Określają dopuszczalne operacje matematyczne na danych
+
+## Wybór testu statystycznego
+
+Skala pomiarowa jest jednym z kluczowych czynników przy wyborze odpowiedniego testu statystycznego. Przykłady:
+
+-   Skala nominalna: test chi-kwadrat
+-   Skala porządkowa: test U Manna-Whitney'a
+-   Skala przedziałowa/ilorazowa: test t-Studenta, ANOVA
+
+## Typowe założenia testów statystycznych
+
+-   Rozkład normalny zmiennej (dla testów parametrycznych)
+-   Niezależność pomiarów
+-   Odpowiednia liczebność próby
+-   Losowy dobór próby
+
+## Tabela wyboru testu
+
+##  {.scrollable background-color="blue" style="font-size: 40%;"}
+
+| Zagadnienie | Przedziałowa / ilorazowa | Porządkowa | Nominalna | Nominalna binarna |
+|--------------|------------------|--------------|--------------|--------------|
+| Jedna populacja | Test t dla średniej<br>Test F dla wariancji |  | Test dla wskaźnika struktury<br>Test chi-kwadrat zgodności | Test dla wskaźnika struktury |
+| Dwie populacje niezależne | Test t równości średnich<br>Test F równości wariancji | Test U Manna-Whitney'a<br>Test serii Walda-Wolfowitza<br>Test dla współczynnika korelacji rang Spearmana | Test równości proporcji<br>Test chi-kwadrat niezależności<br>Test chi-kwadrat jednorodności | Test chi-kwadrat niezależności<br>Test dokładny Fishera |
+| Dwie populacje zależne | Test t par skojarzonych<br>Test dla współczynnika korelacji Pearsona | Test rangowanych znaków Wilcoxona | Test chi-kwadrat niezależności<br>Test chi-kwadrat jednorodności | Test McNemara |
+| K populacji niezależnych | Test ANOVA | Test Kruskala-Wallisa | Test chi-kwadrat niezależności<br>Test chi-kwadrat jednorodności | Test mediany |
+| K populacji zależnych | Test ANOVA powtarzalnych pomiarów | Test Friedmana | Test Q Cochrana | Test Q Cochrana |

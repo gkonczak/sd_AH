@@ -1,0 +1,164 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Wybrane metody statystyczne
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+## Wybrane metody statystyczne
+
+Statystyka oferuje szeroki wachlarz metod do analizy danych. W dalszej części przedstawiono zwięzłą charakterystykę najważniejszych z nich, w tym statystykę opisową, regresję, metody wielowymiarowe, wnioskowanie statystyczne, klasyfikację i prognozowanie.
+
+## Statystyka opisowa
+
+-   Celem jest podsumowanie i opis danych
+-   Główne mierniki:
+    -   tendencji centralnej (średnia, mediana, moda)
+    -   rozproszenia (wariancja, odchylenie standardowe)
+    -   kształtu rozkładu (skośność, kurtoza)
+
+## Wizualizacja danych
+
+-   Histogramy
+-   Wykresy pudełkowe i wiolinowe
+-   Wykresy rozrzutu i macierzowe wykresy rozrzutu
+-   wykresy regresji
+-   Wykresy Q-Q i P-P
+
+## Regresja liniowa prosta
+
+-   Modeluje zależność między dwiema zmiennymi
+-   Równanie: $y = \alpha + \beta x + \epsilon$
+-   Estymacja parametrów metodą najmniejszych kwadratów
+
+## Regresja wieloraka
+
+-   Rozszerzenie regresji prostej na wiele zmiennych niezależnych
+-   Równanie: $y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_k x_k + \epsilon$
+-   Pozwala odpowiedzieć na pytanie: 
+    - *Jakie wielkości najlepiej opisują badane zjawisko?*
+
+## Analiza wariancji (ANOVA)
+
+-   Porównanie wartości przeciętnych w $k$ grupach
+-   Stosowana do badania wpływu czynników jakościowych
+-   Może być jedno- lub wieloczynnikowa
+
+## Metody wielowymiarowe
+
+-   Analiza  głównych składowych (PCA)
+-   Analiza czynnikowa
+-   Analiza skupień
+-   Skalowanie wielowymiarowe
+
+## Wnioskowanie statystyczne
+
+Opiera się na teorii prawdopodobieństwa.
+
+-   Estymacja punktowa i przedziałowa
+-   Testowanie hipotez statystycznych
+-   Estymacja nieparametryczna
+
+
+## Testy parametryczne
+
+-   Test $t$-Studenta (dla jednej próby)
+-   Test $t$-Studenta (dla dwóch prób niezależnych i zależnych)
+-   Test $F$ Fishera-Snedecora
+-   Założenie: normalność rozkładu zmiennych
+
+## Testy nieparametryczne
+
+-   Test chi-kwadrat niezależnosci
+-   Test chi-kwadrat jednorodności
+-   Test U Manna-Whitneya
+-   Test Kruskala-Wallisa
+-   Testy normalności (Shapiro-Wilka, Kołmogorowa-Smirnowa, ...)
+
+Stosowane, gdy założenia testów parametrycznych nie są spełnione
+
+## Testy permutacyjne
+
+-   Nie wymagają założenia postaci rozkładu
+-   Skuteczne nawet dla prób o niewielkich liczebnościach
+-   Możliwe zastosowania dla prób nielosowych
+-   Prosta i czytelna idea
+
+
+## Klasyfikacja
+
+-   Analiza dyskryminacyjna
+-   Drzewa decyzyjne
+-   Metody uczenia maszynowego (np. lasy losowe, SVM)
+
+## Prognozowanie
+
+-   Analiza szeregów czasowych
+-   Modele ARIMA
+-   Wygładzanie wykładnicze
+-   Prognozowanie na podstawie modeli regresji
+
+## Modele liniowe uogólnione (GLM)
+
+-   Rozszerzenie klasycznej regresji liniowej
+-   Pozwalają na modelowanie zmiennych o różnych rozkładach
+-   Przykłady: regresja logistyczna, regresja Poissona
+
+## Metody bayesowskie
+
+Oparte na twierdzeniu Bayesa
+
+-   Pozwalają na uwzględnienie wiedzy *a priori*
+-   Stosowane w estymacji i testowaniu hipotez
+
+## 
+
+Statystyka oferuje zestaw narzędzi do analizy danych. 
+
+Wybór odpowiedniej metody zależy od: 
+
+- Charakteru danych 
+- Celu analizy 
+- Założeń modelu
+
+
+
+

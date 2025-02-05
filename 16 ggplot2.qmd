@@ -1,0 +1,659 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Wizualizacje w ggplot2
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 2
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+---
+
+
+## Zbiór **mtcars**
+
+```{r}
+# Załadowanie zbioru danych
+data(mtcars)
+# Zmiana trzech zmiennych na czynniki (factors)
+mtcars$gear <- factor(mtcars$gear,levels=c(3,4,5),labels=c('3 biegi', '4 biegi', '5 biegów'))
+mtcars$am <- factor(mtcars$am, levels = c(0,1), labels = c('automatyczna','ręczna'))
+mtcars$cyl <- factor(mtcars$cyl,levels=c(4,6,8),labels=c('4 cylindry', '6 cylindrów', '8 cylindrów'))
+
+head(mtcars[,1:5])
+
+```
+
+```{r}
+library(ggplot2)
+library(patchwork)
+library(ggpubr)
+library(gganimate)
+library(ggthemes)
+library(dplyr)
+library(tidyverse)
+
+```
+
+## Wykresy punktowe
+
+```{r}
+# Podstawowa konstrukcja wykresu w ggplot2
+ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+
+
+
+```
+
+```{r}
+# Zapis bez podawania nazw parametrów 'data=', 'x=' i 'y='
+ggplot(mtcars,aes(wt,mpg))+geom_point()
+
+
+
+```
+
+```{r}
+# Konwencja zapisu warstwy w nowej linii
+ggplot(mtcars,aes(wt,mpg))+
+  geom_point()
+
+
+
+```
+
+```{r}
+# Wyróżnienie grup ze względu na liczbę cylindrów
+ggplot(mtcars,aes(wt,mpg,color=cyl))+geom_point()
+
+
+
+```
+
+```{r}
+# Wprowadzenie etykiet osi i legendy
+ggplot(mtcars,aes(wt,mpg,color=cyl))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba przejechanych mil na   galonie paliwa',color='Liczba cylindrów')
+
+
+
+```
+
+```{r}
+# Umieszczenie legendy pod wykresem
+ggplot(mtcars,aes(wt,mpg,color=cyl))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba przejechanych mil na galonie paliwa',color='Liczba cylindrów')+
+  theme(legend.position='bottom')
+
+
+
+```
+
+```{r}
+# Wyróżnienie liczby biegów poprzez kształt
+ggplot(mtcars,aes(wt,mpg,color=cyl,shape=gear))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba przejechanych mil na galonie paliwa',color='Liczba cylindrów',shape='Liczba biegów')+
+  theme(legend.position='bottom')
+
+
+
+```
+
+```{r}
+# Wyróżnienie mocy silnika poprzez rozmiar punktów
+ggplot(mtcars,aes(wt,mpg,color=cyl,shape=gear,size=hp))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba przejechanych mil na galonie paliwa',color='Liczba cylindrów',shape='Liczba biegów',size='Moc')+
+  theme(legend.position='right')
+
+
+
+```
+
+## Histogram i gęstość
+
+```{r}
+# Konstrukcja histogramu dla zmiennej mpg 
+ggplot(mtcars,aes(mpg))+
+  geom_histogram()
+
+
+
+```
+
+```{r}
+# Wykorzystanie parametru fill w konstrukcji histogramu
+ggplot(mtcars,aes(mpg,fill=cyl))+
+  geom_histogram(color='black')+
+  labs(fill='Liczba cylindrów',x='Liczba mil przejechanych na galonie paliwa',y='Liczba samochodów')+
+  theme(legend.position='bottom')
+
+
+
+```
+
+```{r}
+# Konstrukcja gęstości z wypełnieniem względem cyl 
+ggplot(mtcars,aes(mpg,fill=cyl))+
+  geom_density(alpha=0.5)+
+  labs(fill='Liczba cylindrów',x='Liczba mil przejechanych na galonie paliwa',y='Gęstość')+
+  theme(legend.position='bottom')
+
+
+
+```
+
+```{r}
+# Wykres słupkowy dla zmiennej cyl
+ggplot(mtcars,aes(cyl))+
+  labs(x='Liczba cylindrów',y='Liczba samochodów')+
+  geom_bar()
+
+
+
+```
+
+## Wykresy słupkowe
+
+```{r}
+# Wykres słupkowy poziomy – coord_flip
+ggplot(mtcars,aes(cyl))+
+  geom_bar(color='black',fill='red')+
+  labs(x='Liczba cylindrów',y='Liczba samochodów')+
+  coord_flip()
+
+
+
+```
+
+```{r}
+# Konstrukcja wykresu słupkowego nakładanego 
+ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
+  geom_bar(position = "stack") +
+  labs(x = "Liczba cylindrów", y = "Liczba samochodów") +
+  scale_fill_discrete(name = "Liczba biegów") +
+  theme_minimal()
+
+
+
+```
+
+```{r}
+# Konstrukcja wykresu słupkowego struktury
+ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
+  geom_bar(position = "fill") +
+  labs(subtitle = "Rodzaj skrzyni biegów:",x = "Liczba cylindrów", y = "Odsetek samochodów") +
+  scale_fill_discrete(name = "Liczba biegów") +
+  coord_flip()+
+  theme_minimal()+
+  theme(legend.position='bottom')+
+     scale_y_continuous(labels = scales::percent_format())
+
+
+
+```
+
+```{r}
+# Konstrukcja wykresu kołowego –współrzędne biegunowe
+ggplot(mtcars,aes(x='',y=cyl,fill=cyl))+
+  geom_col()+
+  coord_polar(theta='y')
+
+
+
+```
+
+## Wykresy pudełkowe i wiolinowe
+
+```{r}
+# Konstrukcja wykresu boxplot
+ggplot(mtcars,aes(cyl,mpg))+
+  geom_boxplot()+
+  labs(x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Dodanie warstwy z obserwacjami
+ggplot(mtcars,aes(cyl,mpg))+
+  geom_boxplot(fill='yellow')+
+  geom_point()+
+  labs(x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# "Rozrzucenie" obserwacji
+ggplot(mtcars,aes(cyl,mpg))+
+  geom_boxplot(fill='yellow')+
+  geom_jitter(color='blue',size=2)+
+  labs(x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Konstrukcja wykresu wiolinowego
+ggplot(mtcars,aes(factor(cyl),mpg))+
+  geom_violin()+
+  labs(x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Wykres wiolinowy z „rozrzuconymi” punktami - jitter
+ggplot(mtcars,aes(factor(cyl),mpg))+
+  geom_violin(color='blue')+
+  geom_jitter(color='red')+
+  labs(x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Wykres wiolinowy z „rozrzuconymi” punktami - jitter
+ggplot(mtcars,aes(factor(cyl),mpg))+
+  geom_violin(color='blue')+
+    geom_boxplot(fill='yellow', alpha=0.3)+
+  geom_jitter(color='red')+
+  coord_flip()+
+  labs(x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+## Etykiety tekstowe
+
+```{r}
+# Wprowadzenie etykiet tekstowych
+ggplot(mtcars,aes(wt,mpg,label=row.names(mtcars)))+
+  geom_text()
+
+
+
+```
+
+```{r}
+# Etykiety tekstowe i punkty
+ggplot(mtcars,aes(wt,mpg,label=row.names(mtcars)))+
+  geom_text()+
+  geom_point()
+
+
+
+```
+
+```{r , message=FALSE, warning=FALSE}
+# Wprowadzenie etykiet tekstowych i punktów
+library(ggrepel)
+p=ggplot(mtcars,aes(wt,mpg,label=row.names(mtcars)))+
+  geom_point(aes(color=cyl))+
+  labs(x='Waga samochodu')+
+  theme(legend.position='bottom')
+p+geom_text_repel()
+```
+
+
+```{r}
+
+# Dodanie strzałki z opisem
+p + annotate("segment", x = 3, y = 34, xend = 1.9, yend = 34, 
+             arrow = arrow(length = unit(0.3, "cm")), color = "darkgreen") +
+  annotate("text", x = 3, y = 34, label = "Toyota Corolla", 
+           hjust = -0.1, color = "darkgreen")+
+  annotate("segment", x = 4.5, y = 20, xend = 5.4, yend = 11, 
+             arrow = arrow(length = unit(0.3, "cm")), color = "red") +
+  annotate("text", x = 4, y = 21, label = "Lincoln Continental", 
+           hjust = -0.1, color = "red")
+```
+
+
+
+
+## Regresja
+
+```{r}
+# Konstrukcja wykresu funkcji regresji
+ggplot(mtcars,aes(wt,mpg))+
+  geom_point()+
+  geom_smooth()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Regresja liniowa 
+ggplot(mtcars,aes(wt,mpg))+
+  geom_smooth(method='lm')+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Regresja kwadratowa
+ggplot(mtcars,aes(wt,mpg))+
+  geom_smooth(method='lm',formula=y~poly(x,2))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na galonie paliwa')
+
+
+
+```
+
+```{r}
+# Funkcja regresji - wyróżnienie kilku grup
+ggplot(mtcars,aes(wt,mpg,color=cyl))+
+  geom_smooth(method='lm')+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na galonie paliwa',color='Liczba cylindrów')+
+  theme(legend.position='bottom')
+
+
+
+```
+
+## Panele
+
+```{r}
+# Panele w konstrukcji wykresów
+ggplot(mtcars,aes(wt,mpg))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na galonie paliwa',color='Liczba cylindrów')+
+  facet_wrap(~cyl)
+
+
+
+```
+
+```{r}
+ggplot(mtcars,aes(wt,mpg))+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na galonie paliwa',color='Liczba cylindrów')+
+  facet_grid(gear~cyl)
+
+
+
+```
+
+```{r}
+# Zmiana położenia etykiet paneli
+data <- transform(mtcars,
+  am = factor(am, levels = 0:1, c("Automatyczna", "Ręczna")),
+  cyl = factor(cyl, labels=c('4 cylindry', '6 cylindrów', '8 cylindrów')))
+ggplot(data, aes(wt, mpg)) +
+  geom_point() +
+  facet_grid(am ~ cyl, switch = "both")
+
+
+
+```
+
+```{r}
+# Konstrukcja wykresu stosowanego słupków dla liczby cylindrów dla dwóch grup skrzyń biegów
+ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
+  geom_bar(position = "stack") +
+  labs(title = "Rodzaj skrzyni biegów:",x = "Liczba cylindrów", y = "Liczba samochodów") +
+  scale_fill_discrete(name = "Liczba biegów") +
+  facet_wrap(~am)+
+  theme_minimal()+
+  theme(legend.position='bottom')
+
+
+
+```
+
+```{r}
+# Tworzenie wykresu stosowanego słupków dla liczby cylindrów dla dwóch grup skrzyń biegów
+ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
+  geom_bar(position = "fill") +
+  labs(subtitle = "Rodzaj skrzyni biegów:",x = "Liczba cylindrów", y = "Odsetek samochodów") +
+  scale_fill_discrete(name = "Liczba biegów") +
+  facet_wrap(~am)+
+  coord_flip()+
+  theme_minimal()+
+  theme(legend.position='bottom')+
+     scale_y_continuous(labels = scales::percent_format())
+
+
+
+```
+
+## Pakiet patchwork
+
+```{r}
+# Załadowanie biblioteki i utworzenie wykresów r1-r4 
+library(patchwork)
+r1=ggplot(data=mtcars,aes(x=wt,y=mpg,color=cyl))+geom_point()+theme(legend.position='none')
+r2=ggplot(mtcars,aes(mpg,fill=cyl))+
+  geom_histogram()+
+      theme(legend.position='none')
+r3=ggplot(mtcars,aes(cyl,mpg,fill=cyl))+
+  geom_boxplot()+
+  geom_jitter()+
+  theme(legend.position='none')+
+  coord_flip()
+r4=ggplot(mtcars,aes(wt,mpg,color=cyl))+
+  geom_smooth(method='lm')+
+    theme(legend.position='none')+
+  geom_point()
+
+
+
+```
+
+```{r}
+# Umieszczenie dwóch wykresów obok siebie
+r3+r1
+
+
+
+```
+
+```{r}
+# Umieszczenie trzech wykresów obok siebie
+r3+r2+r1
+
+
+
+```
+
+```{r}
+# Rozmieszczenie czterech wykresów
+r1+r2+r3+r4
+
+
+
+```
+
+```{r}
+# Umieszczenie czterech wykresów obok siebie
+r3|r2|r1|r4
+
+
+
+```
+
+```{r}
+# Umieszczenie dwóch wykresów w układzie pionowym
+r1/r2
+
+
+
+```
+
+```{r}
+# Umieszczenie jednego wykresu u góry i dwóch na dole
+r4/(r3+r2)
+
+
+
+```
+
+```{r}
+# Umieszczenie czterech wykresów w trzech liniach 
+r2/(r1+r4)/r3
+
+
+
+```
+
+```{r}
+# Umieszczenie czterech wykresów w trzech liniach 
+(r1+r4)|r2/r3
+
+
+
+```
+
+```{r}
+# Konstrukcja obiektu rys 
+rys=ggplot(mtcars,aes(wt,mpg,color=cyl))+
+  geom_smooth(method='lm')+
+  geom_point()+
+  labs(x='Waga samochodu',y='Liczba mil przejechanych na ga-lonie paliwa',color='Liczba cylindrów')
+rys
+
+
+
+```
+
+## Motywy i animacje
+
+```{r,fig.height=20}
+# Zastosowanie motywów do obiektu rys
+library(ggthemes)
+r1=rys+theme_minimal()
+r2=rys+theme_excel()
+r3=rys+theme_economist()
+r4=rys+theme_igray()
+r1/r2/r3/r4
+
+```
+
+
+```{r}
+# Aranżacja wykresów
+p <- ggarrange(r1, r2, r3, r4,
+                           labels = c("A", "B", "C", "D"),
+                           ncol = 2, nrow = 2)
+print(p)
+```
+
+
+```{r,fig.height=20}
+# Aranżacja wykresów
+p <- ggarrange(r1, r2, r3, r4,
+                           labels = c("A", "B", "C", "D"),
+                           ncol = 1, nrow = 4)
+print(p)
+```
+
+
+
+```{r}
+# Konstrukcja animacji 
+library(gganimate)
+p=ggplot(mtcars, aes(factor(cyl), mpg)) + 
+  geom_boxplot() + 
+  transition_states(
+    gear,
+    transition_length = 1,
+    state_length = 2) +
+  labs(title = 'Liczba biegów: {closest_state}',x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+# Wykonanie animacji
+animate(p, height = 4, width = 8, units = "in", res = 200)
+
+```
+
+```{r}
+# Konstrukcja animacji z dodatkowymi parametrami 
+p=ggplot(mtcars, aes(factor(cyl), mpg)) + 
+    geom_jitter(aes(color=am)) + 
+  geom_boxplot(aes(fill=cyl,alpha=0.4)) + 
+        theme(legend.position='bottom')+
+  transition_states(
+    gear,
+    transition_length = 1,
+    state_length = 2) +
+  labs(title = 'Liczba biegów: {closest_state}',x='Liczba cylindrów',y='Liczba mil przejechanych na galonie paliwa')
+# Wykonanie animacji
+animate(p, height = 4, width = 8, units = "in", res = 200)
+
+
+
+```
+
+
+
+```{r}
+# Konstrukcja wykresu
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Waga samochodu i liczba mil przejechanych na galonie paliwa")
+
+# Zapis wykresu w formacie PNG
+ggsave("wykres.png", plot = p, width = 6, height = 4, dpi = 300)
+
+# Zapis wykresu w formacie PDF
+ggsave("wykres.pdf", plot = p, width = 6, height = 4)
+
+# Zapis wykresu w formatach SVG, JPEG, TIFF i EPS
+ggsave("wykres.svg", plot = p, width = 6, height = 4)
+ggsave("wykres.jpg", plot = p, width = 6, height = 4, dpi = 300)
+ggsave("myplot.tiff", plot = p)
+ggsave("myplot.eps", plot = p)
+
+```
+
+
