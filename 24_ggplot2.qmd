@@ -43,11 +43,10 @@ format:
 link-citations: true
 ---
 
-
 ## Zbiór **mtcars**
 
 ```{r}
-# Załadowanie zbioru danych
+# Załadowanie zbioru danych 
 data(mtcars)
 # Zmiana trzech zmiennych na czynniki (factors)
 mtcars$gear <- factor(mtcars$gear,levels=c(3,4,5),labels=c('3 biegi', '4 biegi', '5 biegów'))
@@ -339,7 +338,6 @@ p=ggplot(mtcars,aes(wt,mpg,label=row.names(mtcars)))+
 p+geom_text_repel()
 ```
 
-
 ```{r}
 
 # Dodanie strzałki z opisem
@@ -352,9 +350,6 @@ p + annotate("segment", x = 3, y = 34, xend = 1.9, yend = 34,
   annotate("text", x = 4, y = 21, label = "Lincoln Continental", 
            hjust = -0.1, color = "red")
 ```
-
-
-
 
 ## Regresja
 
@@ -581,7 +576,6 @@ r1/r2/r3/r4
 
 ```
 
-
 ```{r}
 # Aranżacja wykresów
 p <- ggarrange(r1, r2, r3, r4,
@@ -589,7 +583,6 @@ p <- ggarrange(r1, r2, r3, r4,
                            ncol = 2, nrow = 2)
 print(p)
 ```
-
 
 ```{r,fig.height=20}
 # Aranżacja wykresów
@@ -599,7 +592,7 @@ p <- ggarrange(r1, r2, r3, r4,
 print(p)
 ```
 
-
+##
 
 ```{r}
 # Konstrukcja animacji 
@@ -615,6 +608,8 @@ p=ggplot(mtcars, aes(factor(cyl), mpg)) +
 animate(p, height = 4, width = 8, units = "in", res = 200)
 
 ```
+
+##
 
 ```{r}
 # Konstrukcja animacji z dodatkowymi parametrami 
@@ -634,7 +629,7 @@ animate(p, height = 4, width = 8, units = "in", res = 200)
 
 ```
 
-
+##
 
 ```{r}
 # Konstrukcja wykresu
@@ -655,5 +650,3 @@ ggsave("myplot.tiff", plot = p)
 ggsave("myplot.eps", plot = p)
 
 ```
-
-

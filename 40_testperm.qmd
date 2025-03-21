@@ -1,0 +1,236 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Testy permutacyjne
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+project:
+  output-dir: "docs"
+---
+
+
+## Wprowadzenie do testów permutacyjnych
+- Nieparametryczna metoda weryfikacji hipotez
+- Stosowana gdy założenia testów parametrycznych nie są spełnione
+- Historia: rozwój od lat 30. XX w. (R.A. Fisher)
+- Podstawa: losowe przetasowania danych
+
+
+## Czym są testy permutacyjne?
+
+- Testy statystyczne oparte na przetasowaniach danych
+- Nie wymagają założeń o rozkładzie danych
+- Wykorzystują wszystkie możliwe permutacje wyników
+
+
+
+## Kiedy stosować testy permutacyjne?
+
+- Gdy założenia testów parametrycznych są naruszone
+- Gdy liczba obserwacji jest mała
+- Gdy interesuje nas rzeczywisty rozkład statystyki testowej
+
+
+## Porównanie z metodami klasycznymi
+| Cecha               | Testy parametryczne | Testy permutacyjne |
+|---------------------|---------------------|--------------------|
+| Założenia rozkładu  | Wymagają normalności| Brak (ostrych) założeń       |
+| Moc testu           | Wyższa             | Porównywalna       | 
+| Zastosowanie        | Ograniczone        | Uniwersalne        |
+
+
+## Główne zastosowania
+1. Porównanie średnich między grupami
+2. Analiza wariancji bez założenia normalności
+3. Testowanie niezależności w tablicach wielodzielczych
+4. Badania z małymi próbami i wartościami odstającymi
+
+
+## Procedura testowa
+
+1. Sformułowanie hipotezy zerowej (H₀)
+2. Obliczenie statystyki testowej dla danych oryginalnych
+3. Generowanie permutacji danych przy założeniu H₀
+4. Obliczenie rozkładu statystyki testowej
+5. Wyznaczenie wartości $p$-value
+
+## Przykład w R
+
+```{r}
+#| eval: false
+perm_test <- function(x, y, n_perm=10000) {
+obs_diff <- mean(x) - mean(y)
+combined <- c(x, y)
+perm_diffs <- replicate(n_perm, {
+perm_sample <- sample(combined)
+mean(perm_sample[1:length(x)]) - mean(perm_sample[-(1:length(x))])
+})
+sum(abs(perm_diffs) >= abs(obs_diff)) / n_perm
+}
+```
+
+
+## Test dla jednej próby
+
+- **Test permutacyjny dla wartości średniej** – porównanie z wartością teoretyczną
+- **Test permutacyjny dla mediany** – analiza położenia wartości centralnej
+
+
+
+## Testy dla dwóch prób zależnych
+
+- **Test permutacyjny dla parowanych danych** – alternatywa dla testu t
+- **Test permutacyjny dla mediany różnic** – test porównujący różnice między parami
+
+
+
+## Testy dla dwóch prób niezależnych
+
+- **Test permutacyjny dla średnich** – alternatywa dla testu t dla prób niezależnych
+- **Test permutacyjny dla różnic procentowych** – dla danych kategorycznych
+
+
+
+## Testy dla wielu grup
+
+- **Test permutacyjny ANOVA** – analiza wariancji dla permutowanych danych
+- **Test permutacyjny Kruskala-Wallisa** – porównanie median w wielu grupach
+
+
+
+## Testy dla zależności między zmiennymi
+
+- **Test permutacyjny korelacji** – analiza zależności liniowej
+- **Test permutacyjny dla regresji** – ocena istotności zmiennych regresyjnych
+
+
+## Testowanie jednorodności w tablicach
+- Alternatywa dla testu chi-kwadrat
+- Szczególnie skuteczny przy małych licznościach
+- Procedura:
+  1. Zachować marginalne sumy wierszy
+  2. Generować losowe przydziały do komórek
+  3. Obliczać statystykę testową dla każdej permutacji
+  
+  
+
+
+## Zalety metod permutacyjnych
+- Brak założeń o rozkładzie danych
+- Możliwość testowania dowolnych statystyk
+- Dokładne p-value obliczane empirycznie
+- Łatwa interpretacja wyników
+
+
+
+## Ograniczenia
+- Wysoki koszt obliczeniowy dla dużych zbiorów
+- Wymagają jasnej definicji hipotezy zerowej
+- Trudności w budowie przedziałów ufności
+- Zależność od jakości generatora liczb losowych
+
+
+## Przykład w R
+
+```{r}
+#| eval: false
+grupa_A <- c(5.2, 6.1, 4.9, 5.5, 6.3)
+grupa_B <- c(6.8, 7.2, 7.5, 6.9, 7.1)
+perm_test(grupa_A, grupa_B, 100000)
+```
+
+## Pakiety w R
+
+```{r}
+#| eval: false
+library(coin)
+independence_test(y ~ x, data=df, distribution=approximate(nresample=10000))
+```
+
+## Pakiety
+
+
+- `coin`: Zaawansowane testy permutacyjne
+- `lmPerm`: Permutacyjne wersje modeli liniowych
+- `permuco`: Analizy dla modeli mieszanych
+
+## Nowe trendy rozwojowe
+- Integracja z metodami bootstrapowymi
+- Zastosowania w uczeniu maszynowym
+- Analiza dużych zbiorów danych (Big Data)
+- Testowanie hipotez w danych przestrzennych
+- Automatyzacja procesu permutacji
+
+## Etyka stosowania
+- Świadomy wybór liczby permutacji
+- Poprawne raportowanie metodologii
+- Uwzględnianie ograniczeń obliczeniowych
+
+
+## Porównanie mocy testów
+
+
+```{r}
+#| echo: false
+#| fig-cap: "Moc testów przy różnych rozkładach"
+library(ggplot2)
+ggplot(data.frame(Metoda=c("t-test", "Permutacyjny"),
+Moc=c(0.89, 0.85)), aes(Metoda, Moc)) +
+geom_col(fill="steelblue")
+```
+
+
+## Przykład testu permutacyjnego w R
+
+```{r}
+library(coin)
+# independence_test(y ~ x, data = dane, distribution = approximate(B = 10000))
+```
+
+
+
+## Podsumowanie
+- Potężne narzędzie w analizie statystycznej
+- Elastyczność w doborze statystyki testowej
+- Wymaga zrozumienia podstaw metodologicznych
+- Szczególnie wartościowy w badaniach interdyscyplinarnych
+- Rosnące znaczenie wraz z rozwojem mocy obliczeniowej
+
+

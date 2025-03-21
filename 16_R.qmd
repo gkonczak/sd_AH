@@ -46,6 +46,7 @@ project:
 ---
 
 ```{r}
+#| echo: false
 library(ggplot2)
 library(readxl)
 ```
@@ -69,11 +70,16 @@ Główne cechy:
 
 ## 3. Interfejs RStudio
 
-RStudio składa się z czterech głównych paneli: - Edytor kodu - Konsola - Środowisko/Historia - Pliki/Wykresy/Pakiety/Pomoc
+Okno programu RStudio składa się z czterech głównych paneli: 
+
+- Edytor kodu 
+- Konsola 
+- Środowisko/Historia 
+- Pliki/Wykresy/Pakiety/Pomoc
 
 ## RStudio
 
-![](pic/RStudio.png)
+![](pic/RStudio.png){.lightbox}
 
 ## 4. Podstawowe operacje arytmetyczne {.smaller}
 

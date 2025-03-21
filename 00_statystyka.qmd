@@ -51,7 +51,7 @@ project:
 
 Statystyka znajduje szerokie zastosowanie w wielu dziedzinach nauki i praktyki. Pozwala na analizę danych, wyciąganie wniosków i podejmowanie decyzji w warunkach niepewności.
 
-# Przykładowe zastosowania
+## Przykładowe zastosowania
 
 ## Ekonomia {.smaller}
 

@@ -1,0 +1,1062 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Bank danych lokalnych
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+project:
+  output-dir: "docs"
+---
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+```{r}
+library(ggplot2)
+library(bdl)
+library(ggrepel)
+library(ggforce)
+library(concaveman)
+library(ggExtra)
+library(hrbrthemes)
+library(scales)
+library(ggthemes)
+library(GGally)
+library(ggcorrplot)
+library(ggridges)
+library(geofacet)
+library(maps)
+library(wesanderson)
+library(viridis)
+library(see)
+library(cowplot)
+library(patchwork)
+library(tidyverse)
+theme_set(theme_minimal())
+```
+
+### DANE BDL
+
+#59 P1873 Urodzenia żywe ogółem #65 P1873 Zgony ogółem ogółem #68 Przyrost naturalny ogółem
+
+#72305 Ludność ogółem #450540 urodzenia żywe na 1000 ludności #450541 zgony na 1000 ludności
+
+####450543 małżeństwa na 1000 ludności ogółem ####450539 rozwody na 1000 ludności ogółem
+
+#450543 małżeństwa na 1000 ludności ogółem #1616556 rozwody na 10000 ludności ogółem \# 60270 stopa bezrob rej
+
+```{r}
+# Pobranie danych dla województw
+woj=get_data_by_variable(c(72305,450540,450541,450551,450543,1616556,60270),unitLevel=2)
+nazwy=c('Id','Województwo','Rok','Liczba_lud','Urodzenia_1000','Zgony_1000','Przyrost_n_1000','Małżeństwa_1000','Rozwody_10000','St_bez_r')
+woj=woj[,1:10]
+names(woj)[1:10]=nazwy
+woj$Rok=as.numeric(woj$Rok)
+woj
+
+woj_od2002 <-woj %>% filter( Rok>2001) 
+woj_2019 <-woj %>% filter( Rok==2019) 
+woj_2020 <-woj %>% filter( Rok==2020) 
+woj_2022 <-woj %>% filter( Rok==2022) 
+woj_2y<-rbind(woj_2019,woj_2022)
+woj_4y <-woj %>% filter( Rok %in% c(2002,2010,2019,2022) )
+
+```
+
+```{r}
+# Pobranie danych dla powiatów
+# ludność, urodzenia, zgony, pn, małżeństwa, rozwody, stopa bezrobocia rejestrowanego
+pow=get_data_by_variable(c(72305,450540,450541,450551,450543,1616556,60270),unitLevel=5)
+pow=pow[,1:10]
+names(pow)[1:10]=c('Id','Powiat','Rok','Liczba_lud','Urodzenia_1000','Zgony_1000','Przyrost_n_1000','Małżeństwa_1000','Rozwody_10000','St_bez_r')
+pow$Województwo=str_sub(pow$Id,1,4)
+pow$Rok=as.numeric(pow$Rok)
+pow$mz='Ziemski'
+pow$mz[str_detect(pow$Powiat,'[m.]' )]='Miejski'
+
+pow$Województwo[pow$Województwo=='0714']='MAZOWIECKIE'
+pow$Województwo[pow$Województwo=='0620']='PODLASKIE'
+pow$Województwo[pow$Województwo=='0618']='PODKARPACKIE'
+pow$Województwo[pow$Województwo=='0606']='LUBELSKIE'
+pow$Województwo[pow$Województwo=='0526']='ŚWIĘTOKRZYSKIE'
+pow$Województwo[pow$Województwo=='0510']='ŁÓDZKIE'
+pow$Województwo[pow$Województwo=='0428']='WARMIŃSKO-MAZURSKIE'
+pow$Województwo[pow$Województwo=='0422']='POMORSKIE'
+pow$Województwo[pow$Województwo=='0404']='KUJAWSKO-POMORSKIE'
+pow$Województwo[pow$Województwo=='0316']='OPOLSKIE'
+pow$Województwo[pow$Województwo=='0302']='DOLNOŚLĄSKIE'
+pow$Województwo[pow$Województwo=='0232']='ZACHODNIOPOMORSKIE'
+pow$Województwo[pow$Województwo=='0230']='WIELKOPOLSKIE'
+pow$Województwo[pow$Województwo=='0208']='LUBUSKIE'
+pow$Województwo[pow$Województwo=='0124']='ŚLĄSKIE'
+pow$Województwo[pow$Województwo=='0112']='MAŁOPOLSKIE'
+
+pow
+
+pow_od2002 <-pow %>% filter( Rok>2001) 
+pow_2002 <-pow %>% filter( Rok==2002) 
+pow_2019 <-pow %>% filter( Rok==2019) 
+pow_2022 <-pow %>% filter( Rok==2022) 
+pow_2y<-rbind(pow_2019,pow_2022)
+pow_4y <-pow %>% filter(Rok %in% c(2002,2010,2019,2022) )
+```
+
+################### 
+
+# Powiaty w wybranych województwach
+
+```{r}
+#wybrane_woj=c('ŚLĄSKIE','MAŁOPOLSKIE','MAZOWIECKIE')
+
+pow3 <- pow %>% filter( Województwo %in% c('ŚLĄSKIE','MAŁOPOLSKIE','MAZOWIECKIE')) 
+# pow3 <- pow %>% filter( Województwo %in% wybrane_woj) 
+pow3_2022 <- pow3 %>% filter(Rok==2022)
+# pow3_4y <- pow3 %>% filter( Rok %in% c(2002,2010,2019,2022) )
+
+```
+
+######################################################## WYKRESY - opis
+
+```{r}
+# Rys 4
+# Liczba powiatów w województwach w roku 2022
+woj_2022 %>%
+  ggplot(aes(Województwo,Liczba_lud)) +      
+  geom_col() +
+  labs(x='Województwo ',y='Liczba ludności')+
+  scale_y_continuous(labels = label_number())+
+  coord_flip()
+```
+
+```{r}
+# Rys 5
+# Liczba powiatów ziemskich i miast na prawach powiatu w województwach w roku 2022
+pow_2022 %>%
+  ggplot(aes(Województwo))+
+  geom_bar(fill='blue')+
+  labs(y='Liczba powiatów')+
+  geom_text(stat = "count", aes(label = after_stat(count)), hjust = 0)+
+  theme(legend.position='none')+
+  coord_flip()
+```
+
+```{r}
+# Rys 6
+# Liczba powiatów w województwach w roku 2022 - współrzędne biegunowe
+pow_2022 %>%
+  ggplot(aes(Województwo,fill=Województwo))+
+  geom_bar()+
+  labs(x='',y='Liczba powiatów')+
+  geom_text(stat = "count", aes(label = after_stat(count)), vjust = -1)+
+  theme(legend.position='none')+
+  coord_polar()  
+```
+
+```{r}
+
+# Rys 7
+# Liczba powiatów w województwach w roku 2022 - wykres kołowy
+pow %>% filter(Rok==2022) %>%
+  ggplot(aes(x='',y=Województwo,fill=Województwo))+
+  geom_bar(stat='identity')+
+  labs(x='',y='')+
+  theme(axis.text.x=element_blank())+
+  theme(legend.position='bottom')+
+  coord_polar('y') +
+    scale_fill_manual(values = magma(16))
+```
+
+```{r}
+# Rys 8
+# Liczba powiatów ziemskich i miast na prawach powiatu w województwach w roku 2022
+## Liczba powiatów w województwach
+ggplot(pow_2022, aes(Województwo,fill=mz)) +
+  labs(fill = 'Powiat',y='Liczba powiatów')+
+  ylab('Liczba powiatów')+
+  geom_bar()+ 
+  theme_minimal()+
+    coord_flip()
+```
+
+```{r}
+library(lemon)
+### załadowanie danych do piramidy wieku
+nazwy=c('Id','Polska','Rok','0-4','5-9','10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-74','75-79','80-84','85 i więcej')
+pw_k=get_data_by_variable(c(72296,	72297,	72298	,72299,	47738	,47696,	47695	,47716,	47698,	47727,	47723,	47702,	47693,	72241	,76014,	76015,	76016,	76017	),unitLevel=0)
+pw_m=get_data_by_variable(c(72301, 72302,	72303	,72304,47711,	47736,	47724	,47712,	47725,	47728,	47706,	47715,	47721	,72243,		76018	,76019,	76020	,76021	),unitLevel=0)
+
+```
+
+```{r}
+names(pw_k)[1:21]=nazwy
+pw_k=pw_k[8:28,3:21]
+pw_k$płeć='kobieta'
+
+names(pw_m)[1:21]=nazwy
+pw_m=pw_m[8:28,3:21]
+pw_m$płeć='mężczyzna'
+
+pw=rbind(pw_k,pw_m)
+# pyr=pyr %>% filter (Rok >2001)
+pw$Rok=as.numeric(pw$Rok)
+pw$płeć=factor(pw$płeć,levels=c('mężczyzna','kobieta'))
+```
+
+```{r}
+pw= pw %>%
+  pivot_longer(!c(Rok,płeć), names_to = "Wiek", values_to = "val")
+
+pw$Wiek=factor(pw$Wiek,levels=c('0-4','5-9', '10-14', '15-19', '20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-64','65-69','70-74','75-79','80-84','85 i więcej'))
+```
+
+```{r}
+library(lemon)
+a=38000000
+pw %>% filter(Rok==2021) %>%
+ggplot(aes(x = ifelse(płeć == "mężczyzna", yes = -val/a*100, no = val/a*100), 
+                     y = Wiek, fill = płeć)) +
+  geom_col() +
+  scale_x_symmetric(labels = abs) +
+  labs(x = "Population")
+
+
+pw %>% filter(Rok==2021) %>%
+  ggplot(aes(x=Wiek,y=val,fill=factor(płeć)))+
+  geom_bar(stat='identity') +
+  coord_flip()+
+  scale_fill_manual(name='',values=c('darkred','steelblue'),labels=c('kobiety','mezczyźni'))+
+  labs(x = "Population")
+```
+
+################################## 
+
+# pop1=pw %\>% filter(Rok==2002) %\>% select(val) %\>% sum()
+
+p1=pw %\>% filter(Rok==2002) %\>% ggplot(aes(x = ifelse(płeć == "mężczyzna", yes = -val/1000, no = val/1000), y = Wiek, fill = płeć)) + geom_col() + scale_x_symmetric(labels = abs) + theme(legend.position = 'bottom') + labs(title = 'Rok: 2002', x = 'Populacja w tys.', y = 'Wiek')
+
+# pop2=pw %\>% filter(Rok==2022) %\>% select(val) %\>% sum()
+
+p2=pw %\>% filter(Rok==2022) %\>% ggplot(aes(x = ifelse(płeć == "mężczyzna", yes = -val/1000, no = val/1000), y = Wiek, fill = płeć)) + geom_col() + scale_x_symmetric(labels = abs) + theme(legend.position = 'bottom') + labs(title = 'Rok: 2022', x = 'Populacja w tys.', y = 'Wiek')
+
+p1+p2
+
+```{r}
+### ❕ Załadowanie bibliotek dla animacji
+
+library(gganimate)
+library(gifski)
+
+### Utworzenie obiektu `p`
+pw=pw %>% filter(Rok>2001) 
+p <- ggplot(pw,aes(x = ifelse(płeć == "mężczyzna", yes = -val, no = val), 
+                y = Wiek, fill = płeć)) +
+  geom_col() +
+  scale_x_symmetric(labels = abs) +
+  theme(legend.position = 'none') +
+  labs(title = 'Rok: {as.integer(frame_time)}', x = 'Population', y = 'Wiek') +
+  transition_time(Rok)
+p
+```
+
+################### Urodzenia i zgony województwa
+
+```{r}
+# Rys 9
+woj_2y %>%
+ggplot( aes(x = Urodzenia_1000, y = Zgony_1000, label=Województwo,color=(Urodzenia_1000>Zgony_1000))) + 
+  geom_point(aes(size=Liczba_lud))+xlim(6,14)+ylim(6,14) +
+  geom_abline(slope=1, intercept=0,lty=2)+
+  labs(size='Liczba ludności',color='Urodzenia/Zgony',x='Urodzenia żywe na 1000 ludności', y='Zgony na 1000 ludności')+
+  geom_text_repel()+
+  theme(legend.position='none')+
+  facet_wrap(~Rok)
+```
+
+```{r, fig.height = 8, fig.width = 8}
+# Rys. 10
+woj_4y %>% 
+  ggplot( aes(x = Urodzenia_1000, y = Zgony_1000, label=Województwo,color=(Urodzenia_1000>Zgony_1000))) + 
+  geom_point(size=2)+
+  xlim(7,16)+ylim(7,16) +
+  geom_abline(slope=1, intercept=0,lty=2)+
+  labs(x='Urodzenia żywe na 1000 ludności', y='Zgony na 1000 ludności',title='Urodzenia żywe i zgony na 1000 ludności w województwach w 2002, 2010, 2019 i 2022 roku') +
+  geom_text_repel()+
+  theme(legend.position='none')+
+  facet_wrap (~Rok)
+
+```
+
+################### Urodzenia i zgony powiaty
+
+```{r, fig.height = 8, fig.width = 8}
+pow_4y %>%
+  ggplot( aes(x = Urodzenia_1000, y = Zgony_1000, color=(Urodzenia_1000>Zgony_1000))) + 
+  geom_point(size=2)+xlim(5,18)+ylim(5,18) +
+  geom_abline(slope=1, intercept=0,lty=2)+
+  labs(x='Urodzenia żywe na 1000 ludności', y='Zgony na 1000 ludności',title='Urodzenia żywe i zgony na 1000 ludności w powiatach w 2002, 2010, 2019 i 2022 roku' ) +
+  theme(legend.position='none')+
+  facet_wrap (~Rok)
+
+```
+
+# Rys. 12
+
+p1=pow %\>% filter(Rok==2019) %\>% ggplot( aes(x = Urodzenia_1000, y = Zgony_1000, label=Powiat,color=(Urodzenia_1000\>Zgony_1000))) + geom_point(size=2)+xlim(6,18)+ylim(6,18) + geom_abline(slope=1, intercept=0,lty=2)+ labs(x='Urodzenia żywe na 1000 ludności', y='Zgony na 1000 ludności') + geom_text_repel()+ theme(legend.position='none')
+
+p2=pow %\>% filter(Rok==2022) %\>% ggplot( aes(x = Urodzenia_1000, y = Zgony_1000, label=Powiat,color=(Urodzenia_1000\>Zgony_1000))) + geom_point(size=2)+xlim(6,18)+ylim(6,18) + geom_abline(slope=1, intercept=0,lty=2)+ labs(x='Urodzenia żywe na 1000 ludności', y='Zgony na 1000 ludności' ) + geom_text_repel()+ theme(legend.position='none')
+
+p1+p2
+
+```{r}
+# Rys. 13
+ggplot(pow_2y, aes(x = Województwo, y = Przyrost_n_1000,fill=factor(Rok)))+
+  geom_boxplot()+
+  labs(y='Przyrost naturalny na 1000 mieszkańców w powiatach według województw w latach 2019 i 2022',fill='Rok') +
+  coord_flip()
+```
+
+################################ Urodzenia i zgonw w 4 latach
+
+```{r}
+# Rys. 14
+
+p1=pow %>% filter(Rok==2002 | Rok==2010 | Rok==2019 | Rok==2022) %>%
+  ggplot( aes(x = Urodzenia_1000)) + geom_density(size=2,color=3) +xlim(5,15)+
+  labs(x='Urodzenia żywe na 1000 ludności', y='gęstość') +
+  facet_wrap (~Rok,nrow=4)
+
+p2=pow %>% filter(Rok==2002 | Rok==2010 | Rok==2019 | Rok==2022) %>%
+  ggplot( aes(x = Zgony_1000)) + geom_density(size=2,color=2) +xlim(5,15)+
+  labs(x='Zgony na 1000 ludności', y='gęstość') +
+  facet_wrap (~Rok,nrow=4)
+
+p1|p2
+```
+
+############################ Urodzenia i zgony w 2020
+
+```{r}
+# Rys. 15
+
+p1=pow %>% filter( Rok==2002) %>% ggplot( aes(x = Urodzenia_1000/Zgony_1000)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white") +
+  labs(x='', y='Gęstość',title='2002') +
+  xlim(0,2)+
+  geom_density(alpha=0.2, fill = "#FF6666")
+
+p2=pow %>% filter( Rok==2010) %>% ggplot( aes(x = Urodzenia_1000/Zgony_1000)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white") +
+  labs(x='', y='Gęstość',title='2010') +
+  xlim(0,2)+
+  geom_density(alpha=0.2, fill = "#FF6666")
+
+p3=pow %>% filter( Rok==2019) %>% ggplot( aes(x = Urodzenia_1000/Zgony_1000)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white") +
+  labs(x='', y='Gęstość',title='2019') +
+  xlim(0,2)+
+  geom_density(alpha=0.2, fill = "#FF6666")
+
+p4=pow %>% filter( Rok==2022) %>% ggplot( aes(x = Urodzenia_1000/Zgony_1000)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white") +
+  labs(x='Liczba urodzeń żywych do liczby zgonów', y='Gęstość',title='2022') +
+  xlim(0,2)+
+  geom_density(alpha=0.2, fill = "#FF6666")
+p1/p2/p3/p4
+```
+
+################# Ur i zg w 2020
+
+```{r}
+# Rys 14 ,title='Liczba urodzeń żywych do liczby zgonów w powiatach według województw w roku 2022'
+
+ggplot(pow_2022, aes(x = Województwo, y = Urodzenia_1000/Zgony_1000))+
+  geom_boxplot(aes()) + 
+  labs(y='Liczba urodzeń żywych do liczby zgonów') +
+  coord_flip()+theme_minimal()
+
+```
+
+############################ Urodz i zgony 2022
+
+```{r}
+# Rys. 17 ,title='Liczba urodzeń żywych i zgonów na 1000 ludności w latach 2019 i 2022'
+
+################################## Urodz i zgony 2019 i 2022
+p1 <- ggplot(pow_2019, aes(x=x) ) +
+  # Top
+  geom_density( aes(x = Urodzenia_1000, y = ..density..), fill="green" ) +
+  geom_label( aes(x=6.5, y=0.25, label="Urodzenia żywe")) +
+  # Bottom
+  geom_density( aes(x = Zgony_1000, y = -..density..), fill= "blue") +
+  geom_label( aes(x=6.5, y=-0.25, label="Zgony")) +
+  labs(x="Wskaźnik na 1000 ludności",y="gęstość",title='2019')
+
+p2 <- ggplot(pow_2022, aes(x=x) ) +
+  # Top
+  geom_density( aes(x = Urodzenia_1000, y = ..density..), fill="green" ) +
+  geom_label( aes(x=6.5, y=0.25, label="Urodzenia żywe")) +
+  # Bottom
+  geom_density( aes(x = Zgony_1000, y = -..density..), fill= "blue") +
+  geom_label( aes(x=6.5, y=-0.25, label="Zgony")) +
+  labs(x="Wskaźnik na 1000 ludności",y="gęstość",title='2022')
+
+p1/p2
+
+```
+
+```{r}
+# Rys. 18
+ggplot(pow_od2002,aes(x = Rok, y=Urodzenia_1000))+
+  geom_point(aes(color = Województwo)) +
+  labs(y='Urodzenia żywe na 1000 ludności',title='Liczba urodzeń żywych na 1000 ludności w powiatach według województw') +
+  geom_mark_ellipse(aes(filter=Urodzenia_1000>16.25, label='Powiat kartuski',description='Współczynnik dla powiatu w latach 2017, 2018 i 2019 wynosił : 17,6, 16,5 i 16,4'))+
+  geom_mark_circle(aes(filter=Urodzenia_1000<5.3, label='Powiaty m. Dąbrowa Górnicza i Sopot',description='Współczynnik dla powiatów w 2022 roku wyniósł 5,2'))
+```
+
+```{r}
+# Rys. 19
+ggplot(pow_od2002,aes(x = Rok, y=Zgony_1000))+
+  geom_point(aes(color = Województwo)) +
+  labs(y='Zgony na 1000 ludności',title='Liczba zgonów na 1000 ludności w powiatach według województw') +
+  geom_mark_ellipse(aes(filter=Zgony_1000>20, label='Powiat hajnowski',description='Współczynnik dla powiatu wyniósł 22,3 (powiat bielski 20,2)'))+
+  geom_mark_rect(aes(filter=Zgony_1000<5, label='Powiat m. Żory',description='Współczynnik dla powiatu wyniósł 4,42'))
+```
+
+
+```{r}
+# Rys. 20
+ggpairs(pow_2022[,5:9],title='Urodzenia żywe, zgony, przyrost naturalny, małżeństwa i rozwody w powiatach w 2022 roku')
+
+```
+
+############## Zmiany w czasie WOJEWÓDZTWA
+
+```{r}
+# Rys. 21 labs(title='Urodzenia, zgony, małżeństwa na 1000 i rozwody na 10 tys. mieszkańców w latach 2002 - 2020')
+  woj %>% filter (Rok >2001) %>%
+  ggts("Rok", c("Urodzenia_1000", "Zgony_1000", "Małżeństwa_1000","Rozwody_10000"))+
+  labs(x="Rok",y="Liczba na 1 tys. lub 10 tys. mieszkańców")
+
+```
+
+```{r, fig.height = 8, fig.width = 8}
+# Rys. 22
+p1=ggplot(woj_od2002, aes(x = Rok, y = Urodzenia_1000,color=Województwo))+
+   geom_point()+
+  labs(y='Urodzenia żywe na 1000 ludności',title='Urodzenia żywe na 1000 ludności w województwach latach 2002 - 2022') +
+  geom_line()+
+  labs(y='Urodzenia żywe na 1000 ludności',title='Urodzenia żywe') +
+  theme(legend.position="none") 
+
+p2=ggplot(woj_od2002, aes(x = Rok, y = Zgony_1000,color=Województwo))+
+  geom_point()+
+  labs(y='Zgony na 1000 ludności',title='Zgony')  + 
+  geom_line()+
+  theme(legend.position="bottom") +
+  labs(y='Zgony na 1000 ludności',title='Zgony') 
+
+p1/p2
+```
+
+##################### MAPS
+
+```{r}
+# Kilka rysunków
+PL = map_data('world', region = c('Poland'))
+ggplot(PL, aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = 'white', colour = 'black')
+```
+
+```{r}
+V4 = map_data('world', region = c('Poland','Slovakia','Czech','Hungary'))
+ggplot(V4, aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = 'white', colour = 'black')
+```
+
+```{r}
+### GEOFACET	#https://walczak.org/2018/03/geofacet-polski-wykresy-w-miejscu-wojewodztw/
+# Rys 22
+
+grid_pl <- data.frame(
+  name = c("POMORSKIE", "ZACHODNIOPOMORSKIE", "WARMIŃSKO-MAZURSKIE", "KUJAWSKO-POMORSKIE", "LUBUSKIE",
+           "WIELKOPOLSKIE", "PODLASKIE", "MAZOWIECKIE", "ŁÓDZKIE", "DOLNOŚLĄSKIE", "OPOLSKIE",
+           "ŚWIĘTOKRZYSKIE", "LUBELSKIE", "ŚLĄSKIE", "MAŁOPOLSKIE", "PODKARPACKIE"),
+  code = c("PM", "ZP", "WN", "KP", "LB", "WP", "PD", "MZ", "LD", "DS", "OP", "SK", "LU", "SL", "MA", "PK"),
+  row = c(1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5),
+  col = c(3, 1, 4, 3, 1, 2, 5, 4, 3, 1, 2, 4, 5, 3, 4, 5),
+  stringsAsFactors = FALSE
+)
+```
+
+```{r, fig.height = 8, fig.width = 8}
+# Rys. 23
+
+ggplot(woj_od2002, aes(x = Rok, y = Urodzenia_1000)) +
+  geom_line() + 
+  facet_geo(~Województwo, grid = grid_pl, label = "name") +
+  labs(title = "Urodzenia żywe na 1000 ludności",
+       caption = "Opracowanie własne na podstawie: bdl.stat.gov.pl",
+       x = "Rok",
+       y = "Urodzenia żywe na 1000 ludności w latach 2002 - 2020") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+```
+
+```{r, fig.height = 10, fig.width = 8}
+# Rys. 24
+
+ggplot(woj_od2002, aes(x = Rok, y = Zgony_1000)) +
+  geom_line() +
+  facet_geo(~Województwo, grid = grid_pl, label = "name") +
+  labs(title = "Zgony na 1000 ludności",
+       caption = "Opracowanie własne na podstawie: bdl.stat.gov.pl",
+       x = "Rok",
+       y = "Zgony na 1000 ludności w latach 2002 - 2020") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+```
+
+```{r, fig.height = 8, fig.width = 8}
+# Rys. 25
+
+ggplot(woj_od2002, aes(x = Rok, y=Urodzenia_1000/Zgony_1000)) +
+  geom_line() + 
+  facet_geo(~Województwo, grid = grid_pl, label = "name") +
+  labs(title = "Liczba Urodzeń żywych do liczby zgonów w województwach w latach 2002 - 2022",
+       caption = "Opracowanie własne na podstawie: bdl.stat.gov.pl",
+       x = "Urodzenia żywe na 1000 ludności",
+       y = "Zgony na 1000 ludności") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+```
+
+```{r, fig.height = 8, fig.width = 8}
+# NOWY RYS??????
+
+ggplot(pow_2022, aes(x = Urodzenia_1000, y = Zgony_1000, colour = mz)) +
+  geom_point() + 
+  facet_geo(~Województwo, grid = grid_pl, label = "name") +
+  labs(title = "Urodzenia i zgony na 1000 ludnościw powitach według województw w roku 2022",
+       caption = "Opracowanie własne na podstawie: bdl.stat.gov.pl",
+       x = "Małżeństwa na 1000 ludności",
+       y = "Rozwody na 10000 ludności") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+```{r, fig.height = 8, fig.width = 8}
+# Rys. 26
+
+ggplot(pow_2022, aes(x = Małżeństwa_1000, y = Rozwody_10000, colour = mz)) +
+  geom_point() + 
+  facet_geo(~Województwo, grid = grid_pl, label = "name") +
+  labs(title = "Małżeństwa na 1000 ludności i rozwody na 10000 ludności w powitach według województw w roku 2022",
+       caption = "Opracowanie własne na podstawie: bdl.stat.gov.pl",
+       x = "Małżeństwa na 1000 ludności",
+       y = "Rozwody na 10000 ludności") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+###################### PALETY
+
+### BottleRocket1, BottleRocket2, Rushmore1, Royal1, Royal2, Zissou1, Darjeeling1, Darjeeling2, Chevalier1 , FantasticFox1 , Moonrise1, Moonrise2, Moonrise3, Cavalcanti1, GrandBudapest1, GrandBudapest2, IsleofDogs1, IsleofDogs2
+
+```{r}
+f10<- ggplot(pow3_2022, aes(x=Województwo, y=Zgony_1000,color=Województwo))
+f10 + geom_boxplot(aes(fill=Województwo))+
+  coord_flip()+
+  labs(y='Zgony na 1000 ludności',title='Zgony na 1000 ludności w powiatach wybranych województw w roku 2021')+
+  scale_fill_manual(values=wes_palette(n=3, name="GrandBudapest1"))
+
+f10 + geom_boxplot(aes(fill=Województwo))+
+  coord_flip()+
+  labs(y='Zgony na 1000 ludności',title='Zgony na 1000 ludności w powiatach wybranych województw w roku 2021')+
+  scale_fill_manual(values=wes_palette(n=3, name="GrandBudapest2"))
+
+f10 + geom_boxplot(aes(fill=Województwo))+
+  coord_flip()+
+  labs(y='Zgony na 1000 ludności',title='Zgony na 1000 ludności w powiatach wybranych województw w roku 2021')+
+  scale_fill_manual(values=wes_palette(n=3, name="Royal1"))
+
+f10 + geom_boxplot(aes(fill=Województwo))+
+  coord_flip()+
+  labs(y='Zgony na 1000 ludności',title='Zgony na 1000 ludności w powiatach wybranych województw w roku 2021')+
+  scale_fill_manual(values=wes_palette(n=3, name="Royal2"))
+
+f10 + geom_boxplot(aes(fill=Województwo))+
+  coord_flip()+
+  labs(y='Zgony na 1000 ludności',title='Zgony na 1000 ludności w powiatach wybranych województw w roku 2021')+
+	scale_fill_manual(values=wes_palette(n=3, name="Cavalcanti1"))
+```
+
+```{r}
+############################# PARALEL 4 zmienne
+
+woj %>% filter(Rok==2022) %>%
+ggparcoord(
+    columns = 5:9, groupColumn = 2, order = 4,
+    showPoints = TRUE, 
+    title = "Urodzenia żywe, zgony, przyrost nauralny małżeństwa na 1000 ludności i rozwody na 10000 ludności w roku 2022",
+    alphaLines = 0.3
+    ) + 
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum()+
+  theme(
+    plot.title = element_text(size=10)
+  )
+
+woj %>% filter(Rok==2022) %>%
+ggparcoord(
+    columns = c(5,7,8,9,6), groupColumn = 2, order = 4,
+    showPoints = TRUE, 
+    title = "Urodzenia żywe, zgony, przyrost nauralny małżeństwa na 1000 ludności i rozwody na 10000 ludności w roku 2022",
+    alphaLines = 0.3
+    ) + 
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum()+
+  theme(
+    plot.title = element_text(size=10)
+  )
+```
+
+########################## Urodz i zgony 2022 THEMES black
+
+```{r}
+##library(see)
+
+### OKŁADKA
+ggplot(pow_2022, aes(x = Województwo, y = Urodzenia_1000, color = Województwo)) +
+  	geom_violindot(fill_dots = "black") +
+	labs(title='Grzegorz Kończak',subtitle='Wykresy w ggplot2',x='',y='')+
+ 	theme_abyss() +
+	theme(legend.position='none') +
+  coord_flip()+
+  scale_fill_material_d()
+
+ggplot(pow_2022, aes(x = Województwo, y = Urodzenia_1000, color = Województwo)) +
+  	geom_violindot(fill_dots = "black") +
+	labs(title='',subtitle='',x='',y='')+
+ 	theme_abyss() +
+	theme(legend.position='none') +
+  coord_flip()+
+  scale_fill_material_d()
+
+
+ggplot(pow_2022, aes(x = Województwo, y = Urodzenia_1000, fill = Województwo)) +
+  geom_violindot(fill_dots = "black") +
+	labs(y='Urodzenia żywe na 1000 ludności',title='Urodzenia żywe na 1000 ludności w powiatach według województw w 2022 roku')+
+  theme_abyss() +
+  coord_flip()+
+  scale_fill_material_d()
+
+ggplot(pow_2022, aes(x = Województwo, y = Zgony_1000, fill = Województwo)) +
+  geom_violindot(fill_dots = "black") +
+	labs(y='Zgony na 1000 ludności',title='Zgony na 1000 ludności w powiatach według województw w 2022 roku')+
+  theme_abyss() +
+  coord_flip()+
+  scale_fill_material_d()
+```
+
+```{r}
+library(cowplot)
+
+ggplot(pow_od2002, aes(x = factor(Rok), y = Urodzenia_1000, fill = factor(Rok))) +
+  geom_violindot(fill_dots = "black") +
+	labs(y='Urodzenia żywe na 1000 ludności',x='Rok',fill='Rok',title='Urodzenia żywe na 1000 ludności w powiatach według województw w latach 2002-2021')+
+  theme_cowplot(10)+
+  coord_flip()+
+  scale_fill_material_d()
+
+
+# theme(legend.position='bottom')+
+ggplot(pow_od2002, aes(x = factor(Rok), y = Zgony_1000, fill = factor(Rok))) +
+  geom_violindot(fill_dots = "black") +
+	labs(y='Zgony na 1000 ludności',x='Rok',fill='Rok',title='Zgony na 1000 ludności w powiatach według województw w latach 2002-2021')+
+  theme_cowplot(10)+
+  coord_flip()+
+  scale_fill_material_d()
+```
+
+```{r}
+################ 3 woj
+p=ggplot(pow3_2022, aes(x = Urodzenia_1000, y = Zgony_1000, color=Województwo)) + 
+    geom_point(aes(size=Liczba_lud)) +
+    labs(x='Urodzenia żywe na 1000 ludności', y='Zgony na 1000 ludności') +
+  theme(legend.position ='bottom' )
+p
+```
+
+```{r}
+# Marginal density plot
+ggMarginal(p)
+```
+
+```{r}
+ggMarginal(p, type = "histogram")
+
+
+```
+
+```{r, fig.height = 8, fig.width = 8}
+#################### 3 WOJ Zmiany w czasie BOX
+
+library(ggridges)
+
+# Rys. 27
+
+# grouped boxplot
+p1=pow3 %>% filter (Rok>2001) %>%
+  ggplot( aes(x=factor(Rok), y=Urodzenia_1000, fill=Województwo)) + 
+  labs(y='Urodzenia żywe na 1000 ludności',x='Rok',title='Urodzenia żywe na 1000 ludności w powiatach wybranych województw w 2022 roku') +	
+  geom_boxplot()
+
+# grouped boxplot
+p2=pow3 %>% filter (Rok>2001) %>%
+  ggplot( aes(x=factor(Rok), y=Zgony_1000, fill=Województwo)) + 
+  labs(y='Zgony na 1000 ludności',x='Rok',title='Zgony na 1000 ludności w powiatach wybranych województw w 2022 roku') +	
+  geom_boxplot()
+
+p1/p2
+```
+
+```{r, fig.height = 10, fig.width = 8}
+pow3 %>%  filter (Rok>2001 & Rok == 2*floor(Rok/2)) %>%
+  ggplot( aes(y=factor(Rok), x=Urodzenia_1000/Zgony_1000,  fill=Województwo)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  labs(x='Zgony na 1000 ludności',y='Rok',title='Wskaźnik liczby urodzeń do liczby zgony w powiatach wybranych województw w latach 2002 - 2022 roku') +
+  theme_ridges() +
+  theme(
+    legend.position="none",
+    panel.spacing = unit(0.1, "lines"),
+    strip.text.x = element_text(size = 8)    ) +
+  theme_ipsum()+
+  xlab("") +
+  theme(legend.position ='bottom' )+
+  facet_wrap(~Województwo,ncol=1)
+
+```
+
+################### 3 WOJ Time series
+
+```{r}
+##################	# Urodz i zgo  3 WOJEW miejskie i ziemskie
+ggplot(pow3_2022,
+       aes(x = mz, y = Urodzenia_1000,  colour = interaction(mz, Województwo))) + facet_wrap( ~ Województwo) +
+  geom_point(alpha = 0.6, position = "jitter") +
+  labs(y='Urodzenia żywe na 1000 ludności', x='Powiat',title='Urodzenia żywe na 1000 ludności w powiatach wybranych województw w 2022 roku') +	
+  geom_boxplot(alpha = 0.5, colour = "black")
+
+ggplot(pow3_2022,
+       aes(x = mz, y = Zgony_1000,  colour = interaction(mz, Województwo))) + facet_wrap( ~ Województwo) +
+  geom_point(alpha = 0.6, position = "jitter") +
+  labs(y='Zgony na 1000 ludności', x='Powiat',title='Zgony na 1000 ludności w powiatach wybranych województw w 2022 roku') +
+  geom_boxplot(alpha = 0.5, colour = "black")
+
+```
+
+```{r}
+### Utworzenie obiektu `p`STARE
+library(gapminder)
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7) +
+  theme(legend.position = 'none') +
+  facet_wrap(~continent) +
+  labs(title = 'Rok: {frame_time}', x = 'PKB na osobę', y = 'oczekiwana długość życia') +
+  transition_time(year)
+```
+
+```{r}
+### Wyświetlenie obiektu `p`
+p
+
+### Uruchomienie animacji
+animate(p, 100, 10)
+```
+
+### Uruchomienie animacji z parametrami
+
+```{r}
+animate(p, nframes=100, fps=10,height = 20, width = 30, units = "cm",res=150)
+
+```
+
+### Animacja - określenie różnych parametrów
+
+```{r}
+library(gapminder)
+
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7) +
+  theme(legend.position = 'none') +
+  facet_wrap(~continent) +
+  labs(title = 'Rok: {frame_time}', x = 'PKB na osobę', y = 'oczekiwana długość życia') +
+  transition_time(year)+
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  theme(legend.position = 'none') +
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear')
+p
+
+```
+
+############################## BDL mapa
+
+```{r}
+pie_plot(data_type ="variable" ,"58965", "2022", unitLevel = "1")
+```
+
+```{r}
+scatter_2var_plot(data_type = "variable" ,c("58964", "58965"), unitLevel = "2",year=2022)
+```
+
+```{r}
+line_plot(data_type = "variable", unitParentId = "010000000000", varId = "58964",unitLevel=2)
+```
+
+```{r}
+generate_map(varId = "58965", year = "2021",unitLevel = 2)
+```
+
+```{r}
+# l ludności
+generate_map(varId = "72305", year = "2021",unitLevel = 2)
+```
+
+```{r}
+# urodzenia 450540
+generate_map(varId = "450540", year = "2021",unitLevel = 2)
+```
+
+```{r}
+# Rys. 29
+# przyrost nat POLSKA
+generate_map(varId = "450551", year = "2021",unitLevel = 2, palette = "Blues")
+```
+
+### ŚLĄSKIE
+
+# stopa bezrobocia 60270
+
+```{r}
+# # Rys. 30
+ generate_map(varId = "60270", year = "2021",unitLevel = 5, unitParentId="012400000000", palette = "Blues")
+```
+
+# generate_map(varId = "450540", year = "2021",unitLevel = 5, unitParentId="012400000000",names=TRUE, palette = "Greens")
+
+```{r}
+# Rys. 30
+# urodzenia 450540
+generate_map(varId = "450540", year = "2021",unitLevel = 5, unitParentId="012400000000", palette = "Greens")
+```
+
+```{r}
+# Rys. 31
+# zgony 450541
+
+generate_map(varId = "450541", year = "2021",unitLevel = 5, unitParentId="012400000000",palette = "Reds")
+```
+
+```{r}
+# Rys. 32
+# przyr 4450551
+
+generate_map(varId = "450551", year = "2021",unitLevel = 5, unitParentId="012400000000",palette = "Blues")
+```
+
+####################### Testy permutacyjne
+
+```{r}
+library(coin)
+library(wPerm)
+library(flip)
+library(exactRankTests)
+library(jmuOutlier)
+library(permutes)
+library(AUtests)
+library(lmPerm)
+library(phyloseqGraphTest)
+library(permuco)
+library(libcoin)
+```
+
+```{r}
+mal = pow3_2022 %>% filter(Województwo=='MAŁOPOLSKIE')
+sla = pow3_2022 %>% filter(Województwo=='ŚLĄSKIE') 
+
+mal$Urodzenia_1000
+sla$Urodzenia_1000
+ur_1000=data.frame(w_ur=c(mal$Urodzenia_1000,sla$Urodzenia_1000),
+                   woj=factor(rep(c('małopolskie','śląskie'),c(length(mal$Urodzenia_1000),length(sla$Urodzenia_1000))))
+)
+
+ur_1000
+```
+
+```{r}
+ggplot(ur_1000,aes(woj,w_ur))+geom_boxplot()+geom_jitter()
+
+```
+
+```{r}
+# coin PACKAGE
+library(coin)
+oneway_test(w_ur ~ woj, data = ur_1000)
+
+```
+
+```{r}
+## Exact Fisher-Pitman test
+pvalue(ot <- oneway_test(w_ur ~ woj, data = ur_1000,
+                         distribution = "exact"))
+```
+
+```{r}
+  # DWIE NIEZALEŻNE Independent-samples permutation test to decide whether there is a
+library(wPerm)
+
+perm.ind.loc(ur_1000$w_ur, ur_1000$woj, mean)
+
+perm.ind.loc(ur_1000$w_ur, ur_1000$woj, median)
+
+perm.ind.loc(pow_2y$Urodzenia_1000, pow_2y$mz, mean)
+```
+
+```{r}
+mal = pow3_2022 %>% filter(Województwo=='MAŁOPOLSKIE')
+sla = pow3_2022 %>% filter(Województwo=='ŚLĄSKIE') 
+maz=pow3_2022 %>% filter(Województwo=='MAZOWIECKIE')
+
+mal$Urodzenia_1000
+sla$Urodzenia_1000
+maz$Urodzenia_1000
+
+ur_1000=data.frame(w_ur=c(mal$Urodzenia_1000,sla$Urodzenia_1000,maz$Urodzenia_1000),
+                   woj=factor(rep(c('małopolskie','śląskie','mazowieckie'),c(length(mal$Urodzenia_1000),length(sla$Urodzenia_1000),length(maz$Urodzenia_1000))))
+)
+
+ur_1000
+```
+
+```{r}
+ggplot(ur_1000,aes(woj,w_ur))+geom_boxplot()+geom_jitter()
+
+```
+
+```{r}
+# coin PACKAGE
+library(coin)
+oneway_test(w_ur ~ woj, data = ur_1000)
+
+```
+
+```{r}
+# UWAGA tu musi być ZALEŻNE!
+p_19_22w=pow_2y %>% select(Powiat,Rok,Urodzenia_1000) %>%
+  pivot_wider(
+    names_from = Rok,
+    values_from = Urodzenia_1000,
+    values_fn = mean
+  )
+x=p_19_22w$'2019'[1:370]
+y=p_19_22w$'2022'[1:370]
+
+perm.paired.loc(x, y, mean)
+```
+
+```{r}
+pow3_2022 <- pow3 %>% filter(Rok==2022)
+qu=quantile(pow3_2022$Urodzenia_1000,c(0.2,0.4,0.6,0.8))
+
+pow3_2022$Urodz_q='q1'
+
+pow3_2022$Urodz_q[pow3_2022$Urodzenia_1000>qu[1]]='q2'
+pow3_2022$Urodz_q[pow3_2022$Urodzenia_1000>qu[2]]='q3'
+pow3_2022$Urodz_q[pow3_2022$Urodzenia_1000>qu[3]]='q4'
+pow3_2022$Urodz_q[pow3_2022$Urodzenia_1000>qu[4]]='q5'
+
+tab=table(pow3_2022$Województwo, pow3_2022$Urodz_q)
+tab
+
+tab.df=as.data.frame(tab)
+tab.df
+
+perm.hom.test(tab.df, "flat", "Self-concept", 999)
+hist(pow3_2022$Urodzenia_1000)
+```
+
+```{r}
+
+  # NIEZALEŻNOŚCI Social class vs nursery-rhyme knowledge for a sample of 66 grade-school
+# children.
+data("learning")
+str(learning)
+learning
+# Note that the learning data is in the form of a contingency table ("cont").
+
+# Permutation independence test to decide whether an association exists
+# between social class and nursery-rhyme knowledge, using 999 replications.
+perm.ind.test(learning, "cont", c("Social class", "Nursery-rhyme knowledge"), 999)
+# Or, equivalently, since "cont" is the default "type":
+perm.ind.test(learning, var.names = c("Social class", "Nursery-rhyme knowledge"), R = 999)
+```
+
+```{r}
+woj_ur_zg=woj %>% filter(Rok == 2022) 
+cor(woj_ur_zg$Urodzenia_1000, woj_ur_zg$Zgony_1000)
+
+perm.relation(woj_ur_zg$Urodzenia_1000, woj_ur_zg$Zgony_1000, alternative = "less")
+perm.relation(woj_ur_zg$Urodzenia_1000, woj_ur_zg$Zgony_1000, "kendall", "less")
+perm.relation(woj_ur_zg$Urodzenia_1000, woj_ur_zg$Zgony_1000, "spearman", "less")
+```

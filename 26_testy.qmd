@@ -1,0 +1,159 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Testy statystyczne
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+project:
+  output-dir: "docs"
+---
+
+## Wstęp do teorii testów statystycznych
+
+Testy statystyczne są narzędziami służącymi do oceny, czy dane dostarczają wystarczających dowodów na poparcie hipotezy badawczej. Są one niezbędne w procesie wnioskowania statystycznego, pozwalając na weryfikację hipotez i redukcję błędów w badaniach.
+
+## Główne cele testów statystycznych:
+- **Weryfikacja hipotez**: Testy pomagają określić, czy obserwowane zjawiska są przypadkowe, czy wynikają z realnych zależności.
+- **Redukcja błędów**: Poprzez kontrolę poziomu istotności, testy minimalizują ryzyko popełnienia błędów w wnioskowaniu.
+
+
+
+## Typy błędów w testach statystycznych
+
+Podczas testowania statystycznego istnieją dwa główne rodzaje błędów: **błąd typu I** i **błąd typu II**.
+
+
+
+
+
+## Wybór odpowiedniego testu statystycznego
+
+Wybór testu statystycznego zależy od kilku czynników:
+
+- **Rodzaj danych**: Ciągłe, dyskretne, porządkowe.
+
+- **Liczba grup**: Porównanie dwóch lub więcej grup.
+
+- **Hipoteza badawcza**: Czy chcemy sprawdzić różnice, zależności, czy relacje przyczynowo-skutkowe?
+
+## Przykładowe testy:
+
+- **t-test**: Porównanie średnich dwóch grup.
+
+- **ANOVA**: Porównanie średnich trzech lub więcej grup.
+
+- **Korelacja**: Ocena związku między dwiema zmiennymi ciągłymi.
+
+
+## Typy testów statystycznych
+
+Testy statystyczne można podzielić na dwie główne kategorie:
+
+- **Testy parametryczne**: Zakładają określony rozkład danych (np. normalny) i są wrażliwe na założenia dotyczące parametrów populacji.
+  - Przykłady: test t, ANOVA.
+
+- **Testy nieparametryczne**: Nie zakładają określonego rozkładu danych i są mniej wrażliwe na odstępstwa od założeń.
+  - Przykłady: test U Manna-Whitneya, test Wilcoxona.
+
+
+## Testy parametryczne
+
+Testy parametryczne są stosowane, gdy dane spełniają określone założenia, takie jak normalność rozkładu.
+
+## Przykładowe testy parametryczne:
+- **Test t**: Porównanie średnich dwóch grup.
+- **ANOVA**: Porównanie średnich trzech lub więcej grup.
+- **Regressja liniowa**: Modelowanie związku między zmienną niezależną i zależną.
+
+## Wymagania:
+- Normalność rozkładu
+- Równość wariancji (w niektórych przypadkach)
+
+
+## Testy nieparametryczne
+
+Testy nieparametryczne są stosowane, gdy dane nie spełniają założeń testów parametrycznych lub gdy rozkład danych jest nieznany.
+
+## Przykładowe testy nieparametryczne:
+
+- **Test U Manna-Whitneya**: Porównanie dwóch grup bez założeń o rozkładzie.
+
+- **Test Wilcoxona**: Porównanie dwóch grup powiązanych (np. pary danych).
+
+- **Korelacja Spearmana**: Ocena związku między dwiema zmiennymi porządkowymi lub nie spełniającymi założeń normalności.
+
+## Zalety:
+
+- Mniej wrażliwe na odstępstwa od założeń
+
+- Możliwość zastosowania przy niewielkich próbach
+
+
+## Typy błędów w testach statystycznych
+
+Podczas testowania statystycznego istnieją dwa główne rodzaje błędów: **błąd typu I** i **błąd typu II**.
+
+## Tabela porównawcza błędów:
+| Typ błędu | Opis | Konsekwencje |
+|-----------|------|--------------|
+| **Typ I** | Odrzucenie prawdziwej hipotezy zerowej (fałszywy pozytyw) | Zbyt optymistyczne wnioski, niesłuszne odrzucenie  |
+| **Typ II** | Brak odrzucenia fałszywej hipotezy zerowej (fałszywy negatyw) | Brak wykrycia istotnych efektów |
+
+## Kontrola błędów:
+- **Poziom istotności (α)**: Kontroluje prawdopodobieństwo błędu typu I.
+- **Moc statystyczna (1 - β)**: Określa zdolność testu do wykrycia istotnych efektów, redukując błąd typu II.
+
+
+
+## Zasady stosowania testów statystycznych
+
+1. **Określenie hipotezy badawczej**: sformułowanie hipotezy zerowej i alternatywnej.
+2. **Wybór odpowiedniego testu**: Zależnie od rodzaju danych i założeń.
+3. **Sprawdzenie założeń**: Dane muszą spełniać wymagania testu.
+4. **Ustalenie poziomu istotności**: Zwykle α = 0,05.
+5. **Wnioski**: Na podstawie wyników testu, z uwzględnieniem błędów.
+
+
+
+
+## 
+
+Testy statystyczne są kluczowym elementem w procesie badawczym, pozwalając na obiektywną ocenę hipotez i redukcję błędów. Należy pamiętać o kontroli błędów typu I i II oraz o odpowiednim doborze testu w zależności od rodzaju danych i hipotezy badawczej.
+

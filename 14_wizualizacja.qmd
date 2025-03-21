@@ -17,7 +17,7 @@ format:
     footer: "Grzegorz Kończak, seminarium doktoranckie"
     navigation-mode: linear
     multiplex: true
-    slide-level: 3
+    slide-level: 2
     number-sections: false
     number-depth: 2
     chalkboard: true
@@ -57,17 +57,34 @@ Metody graficzne są powszechnie wykorzystywane w analizie danych. Takie wykresy
 -   Rysunki naskalne w jaskiniach przedstawiały proste zliczenia i grupowania danych
 -   Używano kresek i symboli do reprezentowania liczb i kategorii
 
+
+## ok. 6200 p.n.e.
+
+![](pic/oldest-map.png)
+
+
 ## Starożytne cywilizacje
 
 -   Około 1160 p.n.e. powstała Mapa Papirusu z Turynu - pierwszy udokumentowany przykład wizualizacji danych
 -   Mapa przedstawiała rozmieszczenie zasobów geologicznych
 -   Starożytni astronomowie tworzyli wykresy pozycji ciał niebieskich
 
+## Ruch planet - ok. 950
+
+
+![](pic/planet.png)
+
 ## Średniowiecze i renesans
 
 -   Rozwój kartografii i map tematycznych
 -   W X wieku anonimowy astronom skonstruował wykres pozycji siedmiu ciał niebieskich w czasie
 -   Mapy stawały się coraz bardziej szczegółowe i precyzyjne
+
+
+## Wykresy słupkowe - XIV wiek
+
+
+![](pic/bar.png)
 
 ## XVIII wiek - początki nowoczesnej wizualizacji
 
@@ -78,12 +95,13 @@ Metody graficzne są powszechnie wykorzystywane w analizie danych. Takie wykresy
 ## XIX wiek - złoty wiek grafiki statystycznej
 
 -   Gwałtowny rozwój map tematycznych i grafiki statystycznej
--   John Snow w 1855 roku stworzył słynną mapę epidemii cholery w Londynie
+-   John Snow w 1855 roku zbudował  słynną mapę epidemii cholery w Londynie
 -   Charles Joseph Minard opracował mapy przepływów z liniami o szerokości proporcjonalnej do ilości
 -   Florence Nightingale tworzyła innowacyjne wizualizacje wpływu higieny na śmiertelność w szpitalach
--   Oryginalna wizualizacja rozkładu jazdy pociągów (Paris - Lyon)
+-   Oryginalna wizualizacja rozkładu jazdy pociągów (Paris - Lyon, Etienne Jules Marey 1830-1904)
 
-## Wybrane porezentacje historyczne
+## Wybrane porezentacje historyczne - XIX wiek
+
 
 ## 
 
@@ -92,6 +110,13 @@ Metody graficzne są powszechnie wykorzystywane w analizie danych. Takie wykresy
 ::: {.footer style="font-size: 0.5em; background-color: grey; color: white; padding: 10px; text-align: right; width: 100%; box-sizing: border-box;"}
 Zmienne: Wielkość armii, Szerokość geograficzna, Kierunek marszu, Temperatura, Czas
 :::
+
+
+##
+
+![](pic/Minard1Vector.png)
+
+
 
 ## 
 
@@ -107,7 +132,14 @@ Florence Nightingale (1830-1831)
 ::: {.column width="40%"}
 ![](pic/fn.png){.lightbox fig-align="center" width="30%" height="30%"}
 :::
+
 :::::
+
+##
+
+![](pic/cox.png)
+
+
 
 ## 
 
@@ -187,12 +219,82 @@ Trasa, godziny odjazdów i przyjazdów, kierunek i prędkość jazdy, miejsce i 
 
 ## 
 
-Historia wizualizacji danych to fascynująca podróż od prostych rysunków naskalnych do zaawansowanych, interaktywnych i immersyjnych doświadczeń. Wraz z rozwojem technologii, wizualizacja danych staje się coraz bardziej istotnym narzędziem w nauce, biznesie i codziennym życiu.
+Historia wizualizacji danych to fascynująca podróż od prostych rysunków naskalnych do zaawansowanych, interaktywnych  doświadczeń. Wraz z rozwojem technologii, wizualizacja danych staje się coraz bardziej istotnym narzędziem w nauce, biznesie i codziennym życiu.
+
+
+## Wybrane rodzaje wykresów {.scrollable}
+
+Histogram
+
+Wykres słupkowy
+
+Wykres kołowy i pierścieniowy
+
+Wykres pudełkowy (boxplot)
+
+Wykres wiolinowy
+
+Wykres łodyga-liść
+
+Wykres liniowy
+
+Wykres punktowy
+
+Wykres rozrzutu
+
+Wykres zmiany
+
+Wykres współrzędnych równoległych
+
+Wykres radarowy
+
+Wykres mapowy (kartogram)
+
+Kartodiagram
+
+Wykres mozaikowy
+
+Wykres obrazkowy
+
+Twarze Chernoffa
+
+Wykres bąbelkowy
+
+Macierzowy wykres rozrzutu
+
+Wykresy regresji
+
+Wykresy funkcji gęstości
+
+Wykresy ciepła
+
+Wykres gwiazdowy
+
+Wykres róża Nightingale
+
+Krzywa Lorenza
+
+Wykres słonecznikowy
+
+Wykres lizakowy
+
+Piramida wieku
+
+Wykres konturowy
+
+Wykresy z wynikami wnioskowania
+
+
+
 
 ## Wybrane historyczne wizualizacje
 
-## 
-
 [DataVis](https://www.datavis.ca/milestones/)
+
+[Wizualizacja.... - materiały](https://stat.ue.katowice.pl/wwbn/)
+
+[Wizualizacja...- ebook] (https://sbc.org.pl/dlibra/publication/942581)
+
+
 
 ## 

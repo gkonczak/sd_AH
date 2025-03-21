@@ -1,0 +1,279 @@
+---
+title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
+subtitle: Testy nieparametryczne
+author: 
+  - name: Grzegorz Kończak
+date: last-modified
+format: 
+  revealjs:
+    title-block-banner: '#99FF00' #true
+    theme: moon # bootstrap default cerulean cosmo darkly flatly 
+            #journal lumen paper readable sandstone simplex spacelab united yeti 
+    highlight-style: atom-one  # ayu arrow ally espresso kate breezemark default  
+            # textmate zenburn  haddock monochrome press pygments tango dracula 
+            # monokai nord oblivion printing radical solarized vim-dark gruvbox 
+            # github atom-one
+ #   self-contained: true
+    footer: "Grzegorz Kończak, seminarium doktoranckie"
+    navigation-mode: linear
+    multiplex: true
+    slide-level: 3
+    number-sections: false
+    number-depth: 2
+    chalkboard: true
+    scrollable: true
+    code-line-numbers: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 4
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    # toc: true
+    toc_float: false
+    toc-title: "Program"
+    reference-location: margin #
+    citation-location: margin #
+    cap-location: margin  #
+  # mainfont: Courier New
+  # smaller: true
+    execute:
+      echo: true
+      warning: false
+link-citations: true
+project:
+  output-dir: "docs"
+---
+
+
+## Testy nieparametryczne
+
+
+
+## Testy nieparametryczne
+
+- słabsze założenia dotyczące  rozkładu danych
+- stosowane, gdy nie można założyć normalności rozkładu
+- stosowane dla danych o nieznanym rozkładzie
+- bardziej odporne na wartości odstające
+- często wykorzystywane przy małych próbach
+
+
+## Porównanie testów parametrycznych i nieparametrycznych
+| Cecha | Testy parametryczne | Testy nieparametryczne |
+|--------|-----------------|---------------------|
+| Założenia | Rozkład normalny | Słabe założenia o postaci rozkładu |
+| Typ danych | Ciągłe | Ciągłe lub porządkowe |
+| Przykłady | t-Studenta, ANOVA | Chi-kwadrat, test U Manna-Whitneya, test Kruskala-Wallisa |
+
+
+
+
+## Wskazania do stosowania testów nieparametrycznych
+
+- Gdy dane nie spełniają założeń testów parametrycznych
+- Gdy próbka jest mała
+- Gdy dane są na skali porządkowej lub nominalnej
+
+
+
+## Testy dla jednej próby
+
+- **Test Kołmogorowa-Smirnowa** – porównanie z rozkładem teoretycznym
+- **Test Shapiro-Wilka** – normalność rozkładu
+- **Test rangowanych znaków** – dla danych porządkowych
+
+
+
+
+## R
+
+```{r}
+shapiro.test(mtcars$mpg)
+```
+
+
+
+## Testy dla dwóch prób zależnych
+
+- **Test Wilcoxona** – alternatywa dla testu t dla prób zależnych
+- **Test znaków** – sprawdzanie różnic bez uwzględniania ich wielkości
+
+
+
+## Testy dla dwóch prób niezależnych
+
+- **Test U Manna-Whitneya** – alternatywa dla testu t
+- **Test Kołmogorowa-Smirnowa** – porównanie rozkładów
+
+
+## R - test U Manna-Whitneya
+
+```{r}
+wilcox.test(mpg ~ am, data = mtcars, conf.int = TRUE)
+```
+
+
+
+## R - test Kołmogorowa-Smirnowa
+
+```{r}
+
+data(mtcars)
+
+mpg_4cyl <- mtcars$mpg[mtcars$cyl == 4]
+mpg_6cyl <- mtcars$mpg[mtcars$cyl == 6]
+
+ks.test(mpg_4cyl, mpg_6cyl)
+
+
+```
+
+## Testy dla wielu grup
+
+- **Test Kruskala-Wallisa** – nieparametryczny odpowiednik ANOVA
+- **Test Friedmana** – dla danych zależnych
+
+## R - test Kruskala-Wallisa
+
+
+```{r}
+kruskal.test(mtcars$mpg~mtcars$cyl)
+```
+
+
+
+## Testy dla zależności między zmiennymi
+
+- **Test chi-kwadrat** – dla danych w tablicach kontyngencji
+- **Test korelacji rang Spearmana** – dla dwóch zmiennych porządkowych
+- **Test korelacji Kendalla** – dla dwóch zmiennych porządkowych
+
+
+
+
+
+
+## Zalety testów nieparametrycznych
+
+- Brak ostrych założeń o rozkładzie danych
+- Możliwość stosowania do danych porządkowych
+- Większa odporność na wartości odstające
+
+
+
+## Wady testów nieparametrycznych
+
+- Mniejsza moc statystyczna niż testy parametryczne
+- Nie zawsze istnieją dokładne odpowiedniki testów parametrycznych
+
+
+# Testy chi-kwadrat
+
+## Test zgodności
+- Sprawdza, czy rozkład danych pasuje do określonego modelu
+- Hipotezy:
+  - $H_0$: dane pochodzą z określonego rozkładu
+  - $H_1$: dane nie pochodzą z danego rozkładu
+
+
+
+## Test niezależności
+- Analizuje zależność między dwiema zmiennymi jakościowymi
+- Przykład: zależność między płcią a preferencjami zakupowymi
+
+- Hipotezy:
+  - $H_0$: zmienne sa niezalezne
+  - $H_1$: zmienne są zależne
+
+
+## Test jednorodności
+- Porównuje struktury między dwiema zmiennymi jakościowymi
+- Sprawdza, czy dwie grupy mają ten sam rozkład
+- Używany w badaniach porównujących różne populacje
+
+- Hipotezy:
+  - $H_0$: struktury w populacjach są jednakowe
+  - $H_1$: struktury w populacjach są różne
+
+
+# Testy serii
+
+## Test losowości próby
+- Sprawdza, czy próbka jest losowa
+- Metoda oparta na liczbie serii w uporządkowanych danych
+
+- Hipotezy:
+  - $H_0$: próba jest losowa
+  - $H_1$: próba nie jest losowa
+
+## Test Walda-Wolfowitza
+- Porównuje dwa rozkłady poprzez analizę serii wartości w połączonej próbie
+- Stosowany do sprawdzania, czy dwie populacje mają ten sam rozkład
+
+- Hipotezy:
+  - $H_0$: próby pobrano z populacji o takich samych rozkładach
+  - $H_1$: próby pobrano z populacji o różnych rozkładach
+
+
+# Testy znaków
+
+## Test znaków dla par
+- Porównuje dwie zależne próby
+- Stosowany w badaniach "przed-po"
+
+
+
+## Test McNemara
+- Analizuje zmiany w odpowiedziach tych samych osób
+- Przykład: czy osoby zmieniły zdanie po kampanii reklamowej
+
+
+
+# Testy rang
+
+## Test U Manna-Whitneya
+- Alternatywa dla testu t-Studenta dla prób niezależnych
+- Hipotezy:
+  - $H_0$: brak różnic między grupami
+  - $H_1$: istnieją różnice między grupami
+
+
+
+## Test Wilcoxona dla prób zależnych
+- Alternatywa dla testu $t$-Studenta dla prób zależnych
+- Wykorzystuje sumy rang zamiast średnich wartości
+
+
+
+## Test Kruskala-Wallisa
+- Uogólnienie testu Manna-Whitneya dla więcej niż dwóch grup
+- Alternatywa dla ANOVA bez założenia normalności
+
+
+
+## Test Friedmana
+- Alternatywa dla ANOVA dla powiązanych grup
+- Sprawdza różnice między kilkoma warunkami eksperymentalnymi
+
+
+
+# Podsumowanie
+- Testy nieparametryczne są przydatne, gdy nie można założyć normalności rozkładu
+- Umożliwiają analizę zarówno danych jakościowych, jak i ilościowych
+- Są szczególnie efektywne przy małych próbach
+
+
+## Interpretacja wyników
+
+- $p < 0.05$ → odrzucamy hipotezę zerową
+- $p \ge 0.05$ → brak podstaw do odrzucenia hipotezy zerowej
+
+
+
+## 
+
+- Testy nieparametryczne są przydatne przy braku normalności danych
+- Mają szerokie zastosowanie w różnych dziedzinach nauki
+- Warto znać ich ograniczenia i interpretację wyników
+
