@@ -102,7 +102,7 @@ Metody graficzne są powszechnie wykorzystywane w analizie danych. Takie wykresy
 
 ## Wybrane porezentacje historyczne - XIX wiek
 
-
+https://github.com/USERNAME/moja-strona.git
 ## 
 
 ![Marsz wojsk Napoleona na Moskwę 1812-1813 (Ch. Minard 1869)](pic/napoleon2.png){width="100%" height="100%" fig-align="center" label="Napoleon's march to moscow, 1812–1813 (Minard 1869)"}

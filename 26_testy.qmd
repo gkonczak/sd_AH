@@ -22,7 +22,7 @@ format:
     number-depth: 2
     chalkboard: true
     scrollable: true
-    code-line-numbers: true
+    code-line-numbers: true 
     code-fold: true
     code-tools: true
     fig-width: 8
