@@ -3,7 +3,7 @@ title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
 subtitle: Wizualizacja danych <br> Rys historyczny
 author: 
   - name: Grzegorz Kończak
-date: last-modified
+date: last-modified 
 format: 
   revealjs:
     title-block-banner: '#99FF00' #true

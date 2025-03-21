@@ -3,7 +3,7 @@ title: "Metody statystyczne w badaniach społeczno-ekonomicznych"
 subtitle: Podstawy pracy <br> z programem R
 author: 
   - name: Grzegorz Kończak
-date: last-modified
+date: last-modified 
 format: 
   revealjs:
     title-block-banner: '#99FF00' #true
